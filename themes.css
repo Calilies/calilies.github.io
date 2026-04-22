@@ -2,128 +2,171 @@
    THEMES.CSS — Edit this file to change the site's color palette
    ============================================================ */
 
-/* ── Active theme ─────────────────────────────────────────── */
-/* To switch themes, rename the theme you want to ":root"     */
-/* and rename the current :root to something else.            */
-
+/* ── Active theme: Pink Bloom (default) ───────────────────── */
 :root {
-  /* Background */
-  --bg-page:         #fdf0f8;
-  --bg-section-alt:  #f5e6ff;
-  --bg-card:         #ffffff;
-  --bg-nav:          rgba(255, 240, 248, 0.85);
+  /* Page background gradient (pink → purple → lilac) */
+  --bg-gradient-start:   #ffb3d9;
+  --bg-gradient-mid:     #d4aaff;
+  --bg-gradient-end:     #b8aeff;
 
-  /* Gradient (used in hero & accents) */
-  --gradient-from:   #ffd6ec;
-  --gradient-to:     #e8d5ff;
+  /* Surface / panel colors */
+  --bg-card:             rgba(255, 255, 255, 0.88);
+  --bg-card-hover:       rgba(255, 255, 255, 0.96);
+  --bg-section-light:    rgba(255, 255, 255, 0.60);
+  --bg-section-purple:   rgba(212, 170, 255, 0.35);
+  --bg-nav:              rgba(255, 220, 240, 0.80);
 
-  /* Brand / accent */
-  --accent-primary:  #c96fbe;
-  --accent-hover:    #a855a0;
-  --accent-soft:     #f3d6f0;
+  /* Accent colors */
+  --accent-primary:      #e066aa;
+  --accent-hover:        #c4508f;
+  --accent-soft:         #ffe0f0;
+  --accent-purple:       #b97fe8;
+  --accent-purple-soft:  #efe0ff;
+  --accent-yellow:       #ffd966;
 
   /* Text */
-  --text-heading:    #2d1a2e;
-  --text-body:       #4a3550;
-  --text-muted:      #8b6a94;
-  --text-on-accent:  #ffffff;
+  --text-heading:        #3d1a5c;
+  --text-body:           #5c3478;
+  --text-muted:          #9b72bf;
+  --text-on-accent:      #ffffff;
 
   /* Borders & shadows */
-  --border:          #e8d0f0;
-  --shadow-sm:       0 2px 8px rgba(180, 100, 200, 0.10);
-  --shadow-md:       0 6px 24px rgba(180, 100, 200, 0.15);
-  --shadow-lg:       0 12px 40px rgba(180, 100, 200, 0.20);
+  --border:              rgba(185, 127, 232, 0.25);
+  --shadow-sm:           0 2px 12px rgba(180, 100, 220, 0.12);
+  --shadow-md:           0 6px 28px rgba(180, 100, 220, 0.18);
+  --shadow-lg:           0 14px 48px rgba(180, 100, 220, 0.25);
+
+  /* Decoration colors (butterflies, flowers) */
+  --deco-pink:           #ffb3d9;
+  --deco-purple:         #d4aaff;
+  --deco-lilac:          #c8b8ff;
+  --deco-yellow:         #ffe599;
+  --deco-white:          #fff5fc;
 
   /* Radius */
-  --radius-sm:       8px;
-  --radius-md:       16px;
-  --radius-lg:       24px;
-  --radius-pill:     9999px;
+  --radius-sm:           10px;
+  --radius-md:           18px;
+  --radius-lg:           28px;
+  --radius-xl:           40px;
+  --radius-pill:         9999px;
 }
 
 
-/* ── Theme: Midnight ──────────────────────────────────────── */
-/* Dark purple/blue theme. Uncomment and rename to :root to use. */
+/* ── Theme: Midnight Garden ───────────────────────────────── */
+/* Deep navy → purple. Uncomment & rename to :root to use.    */
 /*
 .theme-midnight {
-  --bg-page:         #0f0b1a;
-  --bg-section-alt:  #160e28;
-  --bg-card:         #1e1535;
-  --bg-nav:          rgba(15, 11, 26, 0.90);
+  --bg-gradient-start:   #1a0a3d;
+  --bg-gradient-mid:     #2d1060;
+  --bg-gradient-end:     #0d1a4a;
 
-  --gradient-from:   #2d1b69;
-  --gradient-to:     #1a0a3d;
+  --bg-card:             rgba(30, 15, 60, 0.88);
+  --bg-card-hover:       rgba(40, 20, 75, 0.96);
+  --bg-section-light:    rgba(30, 15, 60, 0.60);
+  --bg-section-purple:   rgba(80, 40, 140, 0.40);
+  --bg-nav:              rgba(20, 8, 45, 0.90);
 
-  --accent-primary:  #a78bfa;
-  --accent-hover:    #c4b5fd;
-  --accent-soft:     #2d1b69;
+  --accent-primary:      #c084fc;
+  --accent-hover:        #a855f7;
+  --accent-soft:         #2d1060;
+  --accent-purple:       #818cf8;
+  --accent-purple-soft:  #1e1b4b;
+  --accent-yellow:       #fde68a;
 
-  --text-heading:    #f5f0ff;
-  --text-body:       #c4b5fd;
-  --text-muted:      #7c6aaa;
-  --text-on-accent:  #0f0b1a;
+  --text-heading:        #f5e8ff;
+  --text-body:           #d8b4fe;
+  --text-muted:          #7c6aaa;
+  --text-on-accent:      #1a0a3d;
 
-  --border:          #2d1b69;
-  --shadow-sm:       0 2px 8px rgba(167, 139, 250, 0.15);
-  --shadow-md:       0 6px 24px rgba(167, 139, 250, 0.20);
-  --shadow-lg:       0 12px 40px rgba(167, 139, 250, 0.25);
+  --border:              rgba(192, 132, 252, 0.20);
+  --shadow-sm:           0 2px 12px rgba(192, 132, 252, 0.15);
+  --shadow-md:           0 6px 28px rgba(192, 132, 252, 0.22);
+  --shadow-lg:           0 14px 48px rgba(192, 132, 252, 0.30);
+
+  --deco-pink:           #c084fc;
+  --deco-purple:         #818cf8;
+  --deco-lilac:          #a5b4fc;
+  --deco-yellow:         #fde68a;
+  --deco-white:          #f5e8ff;
 }
 */
 
 
-/* ── Theme: Pastel Spring ─────────────────────────────────── */
-/* Soft greens and yellows. Uncomment and rename to :root to use. */
+/* ── Theme: Cotton Candy ──────────────────────────────────── */
+/* All-pink, very soft. Uncomment & rename to :root to use.   */
 /*
-.theme-spring {
-  --bg-page:         #f5fbf0;
-  --bg-section-alt:  #edf7e3;
-  --bg-card:         #ffffff;
-  --bg-nav:          rgba(245, 251, 240, 0.85);
+.theme-cotton-candy {
+  --bg-gradient-start:   #ffc2e0;
+  --bg-gradient-mid:     #ffaad5;
+  --bg-gradient-end:     #ffd6ec;
 
-  --gradient-from:   #d4f0c0;
-  --gradient-to:     #fef9c3;
+  --bg-card:             rgba(255, 255, 255, 0.90);
+  --bg-card-hover:       #ffffff;
+  --bg-section-light:    rgba(255, 245, 252, 0.70);
+  --bg-section-purple:   rgba(255, 200, 230, 0.45);
+  --bg-nav:              rgba(255, 235, 248, 0.85);
 
-  --accent-primary:  #6db56d;
-  --accent-hover:    #4e9a4e;
-  --accent-soft:     #d4f0c0;
+  --accent-primary:      #e0559a;
+  --accent-hover:        #c43d82;
+  --accent-soft:         #ffe8f4;
+  --accent-purple:       #e08080;
+  --accent-purple-soft:  #ffe0e0;
+  --accent-yellow:       #ffda6e;
 
-  --text-heading:    #1a2e1a;
-  --text-body:       #2e4a2e;
-  --text-muted:      #6a8a6a;
-  --text-on-accent:  #ffffff;
+  --text-heading:        #5a0a30;
+  --text-body:           #7a2248;
+  --text-muted:          #c0749a;
+  --text-on-accent:      #ffffff;
 
-  --border:          #c8e8b8;
-  --shadow-sm:       0 2px 8px rgba(100, 180, 100, 0.10);
-  --shadow-md:       0 6px 24px rgba(100, 180, 100, 0.15);
-  --shadow-lg:       0 12px 40px rgba(100, 180, 100, 0.20);
+  --border:              rgba(224, 85, 154, 0.20);
+  --shadow-sm:           0 2px 12px rgba(224, 85, 154, 0.12);
+  --shadow-md:           0 6px 28px rgba(224, 85, 154, 0.18);
+  --shadow-lg:           0 14px 48px rgba(224, 85, 154, 0.24);
+
+  --deco-pink:           #ffaacc;
+  --deco-purple:         #ffbbdd;
+  --deco-lilac:          #ffd0e8;
+  --deco-yellow:         #ffe599;
+  --deco-white:          #fffafc;
 }
 */
 
 
-/* ── Theme: Warm Cream ────────────────────────────────────── */
-/* Neutral warm tones for a minimal look. Rename to :root to use. */
+/* ── Theme: Fairy Forest ──────────────────────────────────── */
+/* Mint green → soft purple. Rename to :root to use.          */
 /*
-.theme-cream {
-  --bg-page:         #faf8f5;
-  --bg-section-alt:  #f2ede6;
-  --bg-card:         #ffffff;
-  --bg-nav:          rgba(250, 248, 245, 0.90);
+.theme-fairy-forest {
+  --bg-gradient-start:   #b8f0d8;
+  --bg-gradient-mid:     #c8e8ff;
+  --bg-gradient-end:     #d4c8ff;
 
-  --gradient-from:   #f5e6d3;
-  --gradient-to:     #e8d5c0;
+  --bg-card:             rgba(255, 255, 255, 0.88);
+  --bg-card-hover:       #ffffff;
+  --bg-section-light:    rgba(240, 255, 248, 0.65);
+  --bg-section-purple:   rgba(200, 232, 255, 0.45);
+  --bg-nav:              rgba(220, 248, 236, 0.85);
 
-  --accent-primary:  #c08060;
-  --accent-hover:    #a06040;
-  --accent-soft:     #f5e6d3;
+  --accent-primary:      #3cb88a;
+  --accent-hover:        #2a9a72;
+  --accent-soft:         #d0f5e8;
+  --accent-purple:       #7a9ae0;
+  --accent-purple-soft:  #dce8ff;
+  --accent-yellow:       #ffe08a;
 
-  --text-heading:    #2e1e0e;
-  --text-body:       #4a3020;
-  --text-muted:      #8a6a50;
-  --text-on-accent:  #ffffff;
+  --text-heading:        #0a3d28;
+  --text-body:           #1e5a40;
+  --text-muted:          #5a9a78;
+  --text-on-accent:      #ffffff;
 
-  --border:          #e0d0c0;
-  --shadow-sm:       0 2px 8px rgba(160, 100, 60, 0.10);
-  --shadow-md:       0 6px 24px rgba(160, 100, 60, 0.15);
-  --shadow-lg:       0 12px 40px rgba(160, 100, 60, 0.20);
+  --border:              rgba(60, 184, 138, 0.20);
+  --shadow-sm:           0 2px 12px rgba(60, 184, 138, 0.12);
+  --shadow-md:           0 6px 28px rgba(60, 184, 138, 0.18);
+  --shadow-lg:           0 14px 48px rgba(60, 184, 138, 0.24);
+
+  --deco-pink:           #a0e8c8;
+  --deco-purple:         #b8d8ff;
+  --deco-lilac:          #c8c0ff;
+  --deco-yellow:         #ffe0a0;
+  --deco-white:          #f5fff9;
 }
 */
