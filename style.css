@@ -60,14 +60,16 @@ a  { color: inherit; text-decoration: none; }
 
 
 /* ── Scalloped wave dividers ──────────────────────────────── */
-.wave-top, .wave-bottom {
-  display: block;
-  width: 100%;
-  overflow: hidden;
+.wave-bottom {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
   line-height: 0;
+  z-index: 10;
+  pointer-events: none;
 }
 
-.wave-top  svg { display: block; transform: rotate(180deg); }
 .wave-bottom svg { display: block; }
 
 
@@ -114,7 +116,7 @@ a  { color: inherit; text-decoration: none; }
 }
 
 .hero-logo {
-  width: clamp(280px, 50vw, 520px);
+  width: clamp(210px, 37.5vw, 390px);
   height: auto;
   mix-blend-mode: multiply;
   margin-bottom: 0.5rem;
@@ -264,6 +266,12 @@ a  { color: inherit; text-decoration: none; }
   text-shadow: 2px 3px 0px rgba(180, 100, 220, 0.12);
 }
 
+#about .section-header h2 {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  text-shadow: none;
+}
+
 .section-header p {
   margin-top: 0.7rem;
   color: var(--text-muted);
@@ -333,8 +341,9 @@ a  { color: inherit; text-decoration: none; }
 }
 
 .about-card h3 {
-  font-family: 'Pacifico', cursive;
+  font-family: 'Fredoka', sans-serif;
   font-size: 1.7rem;
+  font-weight: 600;
   color: var(--text-heading);
   margin-bottom: 1rem;
 }
@@ -570,14 +579,14 @@ a  { color: inherit; text-decoration: none; }
   font-family: 'Fredoka', sans-serif;
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--text-heading);
+  color: #ffffff;
   line-height: 1.2;
 }
 
 .brand-title p {
   font-size: 0.82rem;
   font-weight: 600;
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, 0.80);
   margin-top: 2px;
 }
 
@@ -720,10 +729,10 @@ a  { color: inherit; text-decoration: none; }
 .brand-adidas    .brand-header { border-bottom-color: var(--accent-purple); }
 .brand-medal     .brand-header { border-bottom-color: var(--accent-primary); }
 
-.brand-spongebob .brand-title h3 { color: #b45309; }
-.brand-barbie    .brand-title h3 { color: #be185d; }
-.brand-adidas    .brand-title h3 { color: var(--accent-purple); }
-.brand-medal     .brand-title h3 { color: var(--accent-primary); }
+.brand-spongebob .brand-title h3,
+.brand-barbie    .brand-title h3,
+.brand-adidas    .brand-title h3,
+.brand-medal     .brand-title h3 { color: #ffffff; }
 
 /* Responsive */
 @media (max-width: 600px) {
