@@ -1,0 +1,129 @@
+/* ============================================================
+   THEMES.CSS — Edit this file to change the site's color palette
+   ============================================================ */
+
+/* ── Active theme ─────────────────────────────────────────── */
+/* To switch themes, rename the theme you want to ":root"     */
+/* and rename the current :root to something else.            */
+
+:root {
+  /* Background */
+  --bg-page:         #fdf0f8;
+  --bg-section-alt:  #f5e6ff;
+  --bg-card:         #ffffff;
+  --bg-nav:          rgba(255, 240, 248, 0.85);
+
+  /* Gradient (used in hero & accents) */
+  --gradient-from:   #ffd6ec;
+  --gradient-to:     #e8d5ff;
+
+  /* Brand / accent */
+  --accent-primary:  #c96fbe;
+  --accent-hover:    #a855a0;
+  --accent-soft:     #f3d6f0;
+
+  /* Text */
+  --text-heading:    #2d1a2e;
+  --text-body:       #4a3550;
+  --text-muted:      #8b6a94;
+  --text-on-accent:  #ffffff;
+
+  /* Borders & shadows */
+  --border:          #e8d0f0;
+  --shadow-sm:       0 2px 8px rgba(180, 100, 200, 0.10);
+  --shadow-md:       0 6px 24px rgba(180, 100, 200, 0.15);
+  --shadow-lg:       0 12px 40px rgba(180, 100, 200, 0.20);
+
+  /* Radius */
+  --radius-sm:       8px;
+  --radius-md:       16px;
+  --radius-lg:       24px;
+  --radius-pill:     9999px;
+}
+
+
+/* ── Theme: Midnight ──────────────────────────────────────── */
+/* Dark purple/blue theme. Uncomment and rename to :root to use. */
+/*
+.theme-midnight {
+  --bg-page:         #0f0b1a;
+  --bg-section-alt:  #160e28;
+  --bg-card:         #1e1535;
+  --bg-nav:          rgba(15, 11, 26, 0.90);
+
+  --gradient-from:   #2d1b69;
+  --gradient-to:     #1a0a3d;
+
+  --accent-primary:  #a78bfa;
+  --accent-hover:    #c4b5fd;
+  --accent-soft:     #2d1b69;
+
+  --text-heading:    #f5f0ff;
+  --text-body:       #c4b5fd;
+  --text-muted:      #7c6aaa;
+  --text-on-accent:  #0f0b1a;
+
+  --border:          #2d1b69;
+  --shadow-sm:       0 2px 8px rgba(167, 139, 250, 0.15);
+  --shadow-md:       0 6px 24px rgba(167, 139, 250, 0.20);
+  --shadow-lg:       0 12px 40px rgba(167, 139, 250, 0.25);
+}
+*/
+
+
+/* ── Theme: Pastel Spring ─────────────────────────────────── */
+/* Soft greens and yellows. Uncomment and rename to :root to use. */
+/*
+.theme-spring {
+  --bg-page:         #f5fbf0;
+  --bg-section-alt:  #edf7e3;
+  --bg-card:         #ffffff;
+  --bg-nav:          rgba(245, 251, 240, 0.85);
+
+  --gradient-from:   #d4f0c0;
+  --gradient-to:     #fef9c3;
+
+  --accent-primary:  #6db56d;
+  --accent-hover:    #4e9a4e;
+  --accent-soft:     #d4f0c0;
+
+  --text-heading:    #1a2e1a;
+  --text-body:       #2e4a2e;
+  --text-muted:      #6a8a6a;
+  --text-on-accent:  #ffffff;
+
+  --border:          #c8e8b8;
+  --shadow-sm:       0 2px 8px rgba(100, 180, 100, 0.10);
+  --shadow-md:       0 6px 24px rgba(100, 180, 100, 0.15);
+  --shadow-lg:       0 12px 40px rgba(100, 180, 100, 0.20);
+}
+*/
+
+
+/* ── Theme: Warm Cream ────────────────────────────────────── */
+/* Neutral warm tones for a minimal look. Rename to :root to use. */
+/*
+.theme-cream {
+  --bg-page:         #faf8f5;
+  --bg-section-alt:  #f2ede6;
+  --bg-card:         #ffffff;
+  --bg-nav:          rgba(250, 248, 245, 0.90);
+
+  --gradient-from:   #f5e6d3;
+  --gradient-to:     #e8d5c0;
+
+  --accent-primary:  #c08060;
+  --accent-hover:    #a06040;
+  --accent-soft:     #f5e6d3;
+
+  --text-heading:    #2e1e0e;
+  --text-body:       #4a3020;
+  --text-muted:      #8a6a50;
+  --text-on-accent:  #ffffff;
+
+  --border:          #e0d0c0;
+  --shadow-sm:       0 2px 8px rgba(160, 100, 60, 0.10);
+  --shadow-md:       0 6px 24px rgba(160, 100, 60, 0.15);
+  --shadow-lg:       0 12px 40px rgba(160, 100, 60, 0.20);
+}
+*/

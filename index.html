@@ -3,55 +3,171 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Calilies</title>
-
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(to bottom, #ffe6f2, #f3e8ff);
-      color: #333;
-      text-align: center;
-    }
-
-    .hero {
-      padding: 120px 20px;
-    }
-
-    h1 {
-      font-size: 3.5rem;
-      margin: 0;
-    }
-
-    p {
-      font-size: 1.2rem;
-      opacity: 0.8;
-    }
-
-    .btn {
-      margin-top: 20px;
-      padding: 12px 24px;
-      border-radius: 25px;
-      background: white;
-      border: none;
-      cursor: pointer;
-      font-weight: bold;
-      transition: 0.2s;
-    }
-
-    .btn:hover {
-      transform: scale(1.05);
-    }
-  </style>
+  <title>Calilies — 3D Artist & UGC Creator</title>
+  <link rel="stylesheet" href="themes.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <section class="hero">
+  <!-- ── Navigation ──────────────────────────────────────── -->
+  <nav class="nav">
+    <span class="nav-logo">Calilies</span>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+
+  <!-- ── Hero ────────────────────────────────────────────── -->
+  <section class="hero" id="home">
+    <span class="hero-tag">3D Artist · UGC Creator</span>
     <h1>Calilies</h1>
-    <p>3D Artist | Roblox UGC Creator</p>
-    <button class="btn">View Portfolio</button>
+    <p>Creating 3D art and Roblox UGC items that bring virtual worlds to life.</p>
+    <div class="hero-buttons">
+      <a href="#portfolio" class="btn btn-primary">View Portfolio</a>
+      <a href="#contact" class="btn btn-outline">Get in Touch</a>
+    </div>
   </section>
+
+
+  <!-- ── About ───────────────────────────────────────────── -->
+  <section class="section" id="about">
+    <div class="section-header">
+      <span class="section-tag">About Me</span>
+      <h2>Who I am</h2>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-image">
+        <!-- Replace the placeholder below with an <img> tag when you have a photo:
+             <img src="images/profile.jpg" alt="Calilies"> -->
+        <span>🌸</span>
+      </div>
+
+      <div class="about-text">
+        <h3>Hey, I'm Calilies!</h3>
+        <p>
+          I'm a passionate 3D artist specializing in Roblox UGC creation. I love
+          designing accessories, clothing, and items that players can bring into
+          their favorite games.
+        </p>
+        <p>
+          From concept sketches to finished renders, I handle every step of the
+          creation process — always aiming for that perfect blend of style and
+          game-ready quality.
+        </p>
+
+        <div class="skills-list">
+          <span class="skill-tag">Blender</span>
+          <span class="skill-tag">Roblox Studio</span>
+          <span class="skill-tag">UGC Design</span>
+          <span class="skill-tag">3D Modeling</span>
+          <span class="skill-tag">Texturing</span>
+          <span class="skill-tag">Rendering</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── Portfolio ───────────────────────────────────────── -->
+  <section class="section section-alt" id="portfolio">
+    <div class="section-header">
+      <span class="section-tag">My Work</span>
+      <h2>Portfolio</h2>
+      <p>A selection of 3D pieces and UGC items I've created.</p>
+    </div>
+
+    <div class="portfolio-grid">
+
+      <!-- Card template — duplicate and fill in your work -->
+      <div class="portfolio-card">
+        <div class="card-image">
+          <!-- <img src="images/item1.png" alt="Item name"> -->
+          <span class="card-placeholder">🎀</span>
+        </div>
+        <div class="card-body">
+          <h3>Item Name</h3>
+          <p>Short description of this piece or where it's available.</p>
+          <div class="card-tags">
+            <span class="card-tag">UGC</span>
+            <span class="card-tag">Accessory</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-card">
+        <div class="card-image">
+          <span class="card-placeholder">🌙</span>
+        </div>
+        <div class="card-body">
+          <h3>Item Name</h3>
+          <p>Short description of this piece or where it's available.</p>
+          <div class="card-tags">
+            <span class="card-tag">3D Model</span>
+            <span class="card-tag">Blender</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-card">
+        <div class="card-image">
+          <span class="card-placeholder">✨</span>
+        </div>
+        <div class="card-body">
+          <h3>Item Name</h3>
+          <p>Short description of this piece or where it's available.</p>
+          <div class="card-tags">
+            <span class="card-tag">UGC</span>
+            <span class="card-tag">Hat</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ── Contact ─────────────────────────────────────────── -->
+  <section class="section" id="contact">
+    <div class="section-header">
+      <span class="section-tag">Contact</span>
+      <h2>Get in Touch</h2>
+    </div>
+
+    <div class="contact-box">
+      <p>Want to commission a piece or just say hi? Find me here:</p>
+
+      <div class="contact-links">
+        <!-- Fill in your actual links below -->
+        <a href="#" class="contact-link">
+          <span class="contact-link-icon">🎮</span>
+          Roblox Profile
+        </a>
+        <a href="#" class="contact-link">
+          <span class="contact-link-icon">🐦</span>
+          Twitter / X
+        </a>
+        <a href="#" class="contact-link">
+          <span class="contact-link-icon">📸</span>
+          Instagram
+        </a>
+        <a href="#" class="contact-link">
+          <span class="contact-link-icon">💬</span>
+          Discord
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── Footer ──────────────────────────────────────────── -->
+  <footer class="footer">
+    <p>© 2026 Calilies · All rights reserved</p>
+  </footer>
 
 </body>
 </html>
