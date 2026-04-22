@@ -4,10 +4,10 @@
 
 /* ── Active theme: Pink Bloom (default) ───────────────────── */
 :root {
-  /* Page background gradient (pink → purple → lilac) */
-  --bg-gradient-start:   #ffb3d9;
-  --bg-gradient-mid:     #d4aaff;
-  --bg-gradient-end:     #b8aeff;
+  /* Page background gradient — matches the pastel sky image */
+  --bg-gradient-start:   #c0b6ee;
+  --bg-gradient-mid:     #f8ceb6;
+  --bg-gradient-end:     #ecacca;
 
   /* Surface / panel colors */
   --bg-card:             rgba(255, 255, 255, 0.88);

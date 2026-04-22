@@ -11,11 +11,14 @@ html { scroll-behavior: smooth; }
 
 body {
   font-family: 'Nunito', sans-serif;
-  background: linear-gradient(150deg,
-    var(--bg-gradient-start)  0%,
-    var(--bg-gradient-mid)   50%,
-    var(--bg-gradient-end)  100%
-  );
+  background:
+    radial-gradient(ellipse 85% 55% at 68% 42%, rgba(255, 228, 195, 0.92) 0%, transparent 52%),
+    radial-gradient(ellipse 55% 45% at 10% 10%, rgba(182, 192, 238, 0.78) 0%, transparent 50%),
+    radial-gradient(ellipse 45% 38% at 94% 6%,  rgba(238, 172, 200, 0.68) 0%, transparent 50%),
+    radial-gradient(ellipse 58% 30% at 82% 94%, rgba(248, 152, 118, 0.62) 0%, transparent 50%),
+    radial-gradient(ellipse 52% 38% at 6%  90%, rgba(196, 162, 238, 0.72) 0%, transparent 50%),
+    radial-gradient(ellipse 65% 28% at 44% 70%, rgba(212, 172, 222, 0.58) 0%, transparent 50%),
+    linear-gradient(168deg, #c0b6ee 0%, #d6b2de 16%, #ecacca 34%, #f8ceb6 54%, #eeb6cc 72%, #d0aee8 90%, #c6b6f2 100%);
   background-attachment: fixed;
   color: var(--text-body);
   line-height: 1.65;
