@@ -126,44 +126,9 @@
     <img class="deco deco-flower delay-1" style="bottom:12%; left:7%; width:36px; transform:rotate(60deg);" src="pics/Flower.png" alt="">
 
     <div class="section-header">
-      <span class="section-tag">Featured</span>
+      <span class="section-tag">My Work</span>
       <h2>Recent Work ✨</h2>
-      <p>A selection of my latest pieces. Click any item to view it on Roblox.</p>
-    </div>
-
-
-    <div class="recent-work-grid">
-
-      <a href="https://www.roblox.com/catalog/74467665615721/Barbie-Aura" target="_blank" rel="noopener" class="ugc-card">
-        <div class="ugc-card-img"><img data-rblx-id="74467665615721" alt="Barbie Aura"></div>
-        <div class="ugc-card-info"><p class="ugc-name">Barbie Aura</p><span class="ugc-price paid">R$199</span></div>
-      </a>
-
-      <a href="https://www.roblox.com/catalog/71812539916895/adidas-Chaos-Aura" target="_blank" rel="noopener" class="ugc-card">
-        <div class="ugc-card-img"><img data-rblx-id="71812539916895" alt="adidas Chaos Aura"></div>
-        <div class="ugc-card-info"><p class="ugc-name">adidas Chaos Aura</p><span class="ugc-price paid">R$140</span></div>
-      </a>
-
-      <a href="https://www.roblox.com/catalog/99351539306864/Galaxy-Staff" target="_blank" rel="noopener" class="ugc-card">
-        <div class="ugc-card-img"><img data-rblx-id="99351539306864" alt="Galaxy Staff"></div>
-        <div class="ugc-card-info"><p class="ugc-name">Galaxy Staff</p><span class="ugc-price paid">R$175</span></div>
-      </a>
-
-      <a href="https://www.roblox.com/catalog/16603890398/Krusty-Krab-Hat" target="_blank" rel="noopener" class="ugc-card">
-        <div class="ugc-card-img"><img data-rblx-id="16603890398" alt="Krusty Krab Hat"></div>
-        <div class="ugc-card-info"><p class="ugc-name">Krusty Krab Hat</p><span class="ugc-price paid">R$99</span></div>
-      </a>
-
-      <a href="https://www.roblox.com/catalog/104437440067233/Blonde-Hair-with-Pink-Strawberry-Hat" target="_blank" rel="noopener" class="ugc-card">
-        <div class="ugc-card-img"><img data-rblx-id="104437440067233" alt="Blonde Hair with Pink Strawberry Hat"></div>
-        <div class="ugc-card-info"><p class="ugc-name">Blonde Hair with Pink Strawberry Hat</p><span class="ugc-price free">Free</span></div>
-      </a>
-
-      <a href="https://www.roblox.com/catalog/14651945346/Barbie-A-Touch-of-Magic-Pegasus-Plushie" target="_blank" rel="noopener" class="ugc-card">
-        <div class="ugc-card-img"><img data-rblx-id="14651945346" alt="Barbie A Touch of Magic Pegasus Plushie"></div>
-        <div class="ugc-card-info"><p class="ugc-name">Barbie Pegasus Plushie</p><span class="ugc-price paid">R$89</span></div>
-      </a>
-
+      <p>UGC items, 3D assets, and games — browse everything in the portfolio.</p>
     </div>
 
     <div class="recent-work-cta">
@@ -231,51 +196,5 @@
     <p>🌸 © 2026 Calilies · All rights reserved 🌸</p>
   </footer>
 
-  <script>
-    async function loadRobloxThumbnails() {
-      const imgs = document.querySelectorAll('[data-rblx-id]');
-      const assetIds = [], bundleIds = [];
-
-      imgs.forEach(img => {
-        if (img.dataset.rblxType === 'bundle') bundleIds.push(img.dataset.rblxId);
-        else assetIds.push(img.dataset.rblxId);
-      });
-
-      function applyThumbnails(items) {
-        items.forEach(item => {
-          const id = String(item.targetId);
-          document.querySelectorAll(`[data-rblx-id="${id}"]`).forEach(img => {
-            img.src = item.imageUrl;
-            img.onload = () => {
-              img.classList.add('loaded');
-              img.closest('.ugc-card-img').classList.add('img-loaded');
-            };
-          });
-        });
-      }
-
-      if (assetIds.length) {
-        try {
-          const res = await fetch(
-            `https://thumbnails.roblox.com/v1/assets?assetIds=${assetIds.join(',')}&returnPolicy=PlaceHolder&size=420x420&format=Png`
-          );
-          const data = await res.json();
-          applyThumbnails(data.data || []);
-        } catch (_) {}
-      }
-
-      if (bundleIds.length) {
-        try {
-          const res = await fetch(
-            `https://thumbnails.roblox.com/v1/bundles/thumbnails?bundleIds=${bundleIds.join(',')}&size=420x420&format=Png`
-          );
-          const data = await res.json();
-          applyThumbnails(data.data || []);
-        } catch (_) {}
-      }
-    }
-
-    document.addEventListener('DOMContentLoaded', loadRobloxThumbnails);
-  </script>
 </body>
 </html>
