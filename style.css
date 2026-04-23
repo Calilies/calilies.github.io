@@ -11,10 +11,34 @@ html { scroll-behavior: smooth; }
 
 body {
   font-family: 'Nunito', sans-serif;
-  background: linear-gradient(145deg, #f9c6e0 0%, #e8a8d8 20%, #c99ee8 45%, #b08ee8 65%, #c0a0f0 80%, #d4a8f4 100%) fixed;
+  background: transparent;
   color: var(--text-body);
   line-height: 1.65;
   overflow-x: hidden;
+}
+
+/* Blurred image layer */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background: url('pics/bg.jpg') center / cover no-repeat;
+  filter: blur(10px);
+  transform: scale(1.08);
+}
+
+/* Pink-to-lilac gradient overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(160deg,
+    rgba(249, 180, 220, 0.60) 0%,
+    rgba(220, 160, 240, 0.50) 45%,
+    rgba(185, 145, 245, 0.65) 100%
+  );
 }
 
 img { max-width: 100%; display: block; }
