@@ -817,6 +817,7 @@ a  { color: inherit; text-decoration: none; }
 
 
 /* ── Recent Work section ──────────────────────────────────── */
+#recent-work .section-header p { color: #ffffff; }
 .recent-work-grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
