@@ -1,0 +1,240 @@
+/* ============================================================
+   PORTFOLIO.CSS — Styles specific to portfolio.html
+   ============================================================ */
+
+/* ── Nav logo as link ─────────────────────────────────────── */
+a.nav-logo {
+  font-family: 'Pacifico', cursive;
+  font-size: 1.4rem;
+  color: var(--accent-primary);
+  text-decoration: none;
+}
+
+.nav-active {
+  color: var(--accent-primary) !important;
+}
+
+
+/* ── Page hero ────────────────────────────────────────────── */
+.port-hero {
+  min-height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 110px 5% 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+.port-hero-inner {
+  position: relative;
+  z-index: 2;
+}
+
+.port-hero-inner h1 {
+  font-family: 'Fredoka', sans-serif;
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  font-weight: 700;
+  color: var(--text-heading);
+  margin: 0.5rem 0 0.7rem;
+}
+
+.port-hero-inner p {
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 1rem;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+
+/* ── Tabs bar ─────────────────────────────────────────────── */
+.port-tabs-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 0 5% 0;
+  position: sticky;
+  top: 64px;
+  z-index: 100;
+  background: transparent;
+}
+
+.port-tabs {
+  display: inline-flex;
+  gap: 0.5rem;
+  background: var(--bg-card);
+  border-radius: var(--radius-pill);
+  padding: 6px;
+  box-shadow: var(--shadow-md);
+  border: 1.5px solid var(--border);
+  margin-bottom: 2.5rem;
+}
+
+.port-tab {
+  padding: 10px 32px;
+  border-radius: var(--radius-pill);
+  border: none;
+  background: transparent;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  letter-spacing: 0.5px;
+}
+
+.port-tab:hover {
+  color: var(--accent-primary);
+  background: var(--accent-soft);
+}
+
+.port-tab.active {
+  background: var(--accent-primary);
+  color: #ffffff;
+  box-shadow: var(--shadow-sm);
+}
+
+
+/* ── Tab panels ───────────────────────────────────────────── */
+.port-content {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 5% 80px;
+}
+
+.port-panel {
+  display: none;
+}
+
+.port-panel.active {
+  display: block;
+}
+
+
+/* ── UGC panel: brand sections inherit from style.css ─────── */
+.port-panel .brand-section {
+  margin-bottom: 3rem;
+}
+
+
+/* ── Empty state ──────────────────────────────────────────── */
+.port-empty {
+  text-align: center;
+  padding: 5rem 2rem;
+  color: var(--text-muted);
+}
+
+.port-empty-icon {
+  font-size: 3.5rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.port-empty p {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+
+/* ── Games grid ───────────────────────────────────────────── */
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.4rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.game-card {
+  display: block;
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1.5px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+  transition: transform 0.22s, box-shadow 0.22s, background 0.18s;
+}
+
+.game-card:hover {
+  transform: translateY(-6px) rotate(0.3deg);
+  box-shadow: var(--shadow-lg);
+  background: var(--bg-card-hover);
+}
+
+.game-card-img {
+  aspect-ratio: 1 / 1;
+  background: linear-gradient(135deg, var(--deco-pink), var(--deco-purple));
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+}
+
+.game-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.35s;
+}
+
+.game-card-img img.loaded {
+  opacity: 1;
+}
+
+.game-card:hover .game-card-img img {
+  transform: scale(1.05);
+}
+
+/* Shimmer on game cards */
+.game-card-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(255,255,255,0.35) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+  pointer-events: none;
+}
+
+.game-card-img.img-loaded::after,
+.game-card-img--placeholder::after {
+  display: none;
+}
+
+.game-card-info {
+  padding: 0.75rem 0.9rem 0.9rem;
+}
+
+.game-name {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-heading);
+  margin-bottom: 0.3rem;
+  line-height: 1.3;
+}
+
+.game-play {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+  letter-spacing: 0.2px;
+}
+
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .games-grid { grid-template-columns: repeat(2, 1fr); }
+  .port-tab { padding: 8px 18px; font-size: 0.9rem; }
+}
