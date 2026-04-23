@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 60" preserveAspectRatio="none">
+  <!-- vine -->
+  <path d="M0,30 Q112,18 225,30 Q337,42 450,30 Q562,18 675,30 Q787,42 900,30"
+        stroke="#c9a882" stroke-width="1.5" fill="none" opacity="0.55"/>
+
+  <!-- leaves -->
+  <g transform="translate(30,28) rotate(-35)"><ellipse cx="0" cy="0" rx="3" ry="7.5" fill="#a8d080" opacity="0.8"/></g>
+  <g transform="translate(125,22) rotate(20)"><ellipse cx="0" cy="0" rx="3" ry="7.5" fill="#a8d080" opacity="0.8"/></g>
+  <g transform="translate(225,30) rotate(-28)"><ellipse cx="0" cy="0" rx="3" ry="7.5" fill="#a8d080" opacity="0.8"/></g>
+  <g transform="translate(325,38) rotate(32)"><ellipse cx="0" cy="0" rx="3" ry="7.5" fill="#a8d080" opacity="0.8"/></g>
+  <g transform="translate(425,32) rotate(-18)"><ellipse cx="0" cy="0" rx="3" ry="7.5" fill="#a8d080" opacity="0.8"/></g>
+  <g transform="translate(525,22) rotate(28)"><ellipse cx="0" cy="0" rx="3" ry="7.5" fill="#a8d080" opacity="0.8"/></g>
+  <g transform="translate(625,27) rotate(-22)"><ellipse cx="0" cy="0" rx="3" ry="7.5" fill="#a8d080" opacity="0.8"/></g>
+  <g transform="translate(725,35) rotate(28)"><ellipse cx="0" cy="0" rx="3" ry="7.5" fill="#a8d080" opacity="0.8"/></g>
+  <g transform="translate(858,34) rotate(-32)"><ellipse cx="0" cy="0" rx="3" ry="7.5" fill="#a8d080" opacity="0.8"/></g>
+
+  <!-- pink flowers -->
+  <g transform="translate(75,25)">
+    <ellipse cx="0" cy="-7" rx="4" ry="6" fill="#ffc4d4"/>
+    <ellipse cx="0" cy="-7" rx="4" ry="6" fill="#ffc4d4" transform="rotate(72)"/>
+    <ellipse cx="0" cy="-7" rx="4" ry="6" fill="#ffc4d4" transform="rotate(144)"/>
+    <ellipse cx="0" cy="-7" rx="4" ry="6" fill="#ffc4d4" transform="rotate(216)"/>
+    <ellipse cx="0" cy="-7" rx="4" ry="6" fill="#ffc4d4" transform="rotate(288)"/>
+    <circle cx="0" cy="0" r="3.5" fill="#fff0f5"/><circle cx="0" cy="0" r="1.5" fill="#ffb6c8"/>
+  </g>
+  <g transform="translate(275,34)">
+    <ellipse cx="0" cy="-7" rx="4" ry="6" fill="#ffc4d4"/>
+    <ellipse cx="0" cy="-7" rx="4" ry="6" fill="#ffc4d4" transform="rotate(72)"/>
+    <ellipse cx="0" cy="-7" rx="4" ry="6" fill="#ffc4d4" transform="rotate(144)"/>
+    <ellipse cx="0" cy="-7" rx="4" ry="6" fill="#ffc4d4" transform="rotate(216)"/>
+    <ellipse cx="0" cy="-7" rx="4" ry="6" fill="#ffc4d4" transform="rotate(288)"/>
+    <circle cx="0" cy="0" r="3.5" fill="#fff0f5"/><circle cx="0" cy="0" r="1.5" fill="#ffb6c8"/>
+  </g>
+  <g transform="translate(475,28)">
+    <ellipse cx="0" cy="-7" rx="4" ry="6" fill="#ffc4d4"/>
+    <ellipse cx="0" cy="-7" rx="4" ry="6" fill="#ffc4d4" transform="rotate(72)"/>
+    <ellipse cx="0" cy="-7" rx="4" ry="6" fill="#ffc4d4" transform="rotate(144)"/>
+    <ellipse cx="0" cy="-7" rx="4" ry="6" fill="#ffc4d4" transform="rotate(216)"/>
+    <ellipse cx="0" cy="-7" rx="4" ry="6" fill="#ffc4d4" transform="rotate(288)"/>
+    <circle cx="0" cy="0" r="3.5" fill="#fff0f5"/><circle cx="0" cy="0" r="1.5" fill="#ffb6c8"/>
+  </g>
+  <g transform="translate(675,30)">
+    <ellipse cx="0" cy="-7" rx="4" ry="6" fill="#ffc4d4"/>
+    <ellipse cx="0" cy="-7" rx="4" ry="6" fill="#ffc4d4" transform="rotate(72)"/>
+    <ellipse cx="0" cy="-7" rx="4" ry="6" fill="#ffc4d4" transform="rotate(144)"/>
+    <ellipse cx="0" cy="-7" rx="4" ry="6" fill="#ffc4d4" transform="rotate(216)"/>
+    <ellipse cx="0" cy="-7" rx="4" ry="6" fill="#ffc4d4" transform="rotate(288)"/>
+    <circle cx="0" cy="0" r="3.5" fill="#fff0f5"/><circle cx="0" cy="0" r="1.5" fill="#ffb6c8"/>
+  </g>
+  <g transform="translate(869,27)">
+    <ellipse cx="0" cy="-7" rx="4" ry="6" fill="#ffc4d4"/>
+    <ellipse cx="0" cy="-7" rx="4" ry="6" fill="#ffc4d4" transform="rotate(72)"/>
+    <ellipse cx="0" cy="-7" rx="4" ry="6" fill="#ffc4d4" transform="rotate(144)"/>
+    <ellipse cx="0" cy="-7" rx="4" ry="6" fill="#ffc4d4" transform="rotate(216)"/>
+    <ellipse cx="0" cy="-7" rx="4" ry="6" fill="#ffc4d4" transform="rotate(288)"/>
+    <circle cx="0" cy="0" r="3.5" fill="#fff0f5"/><circle cx="0" cy="0" r="1.5" fill="#ffb6c8"/>
+  </g>
+
+  <!-- lilac flowers -->
+  <g transform="translate(175,26)">
+    <ellipse cx="0" cy="-7" rx="4" ry="6" fill="#d4aaf0"/>
+    <ellipse cx="0" cy="-7" rx="4" ry="6" fill="#d4aaf0" transform="rotate(72)"/>
+    <ellipse cx="0" cy="-7" rx="4" ry="6" fill="#d4aaf0" transform="rotate(144)"/>
+    <ellipse cx="0" cy="-7" rx="4" ry="6" fill="#d4aaf0" transform="rotate(216)"/>
+    <ellipse cx="0" cy="-7" rx="4" ry="6" fill="#d4aaf0" transform="rotate(288)"/>
+    <circle cx="0" cy="0" r="3.5" fill="#f8f0ff"/><circle cx="0" cy="0" r="1.5" fill="#c49ee0"/>
+  </g>
+  <g transform="translate(375,35)">
+    <ellipse cx="0" cy="-7" rx="4" ry="6" fill="#d4aaf0"/>
+    <ellipse cx="0" cy="-7" rx="4" ry="6" fill="#d4aaf0" transform="rotate(72)"/>
+    <ellipse cx="0" cy="-7" rx="4" ry="6" fill="#d4aaf0" transform="rotate(144)"/>
+    <ellipse cx="0" cy="-7" rx="4" ry="6" fill="#d4aaf0" transform="rotate(216)"/>
+    <ellipse cx="0" cy="-7" rx="4" ry="6" fill="#d4aaf0" transform="rotate(288)"/>
+    <circle cx="0" cy="0" r="3.5" fill="#f8f0ff"/><circle cx="0" cy="0" r="1.5" fill="#c49ee0"/>
+  </g>
+  <g transform="translate(575,24)">
+    <ellipse cx="0" cy="-7" rx="4" ry="6" fill="#d4aaf0"/>
+    <ellipse cx="0" cy="-7" rx="4" ry="6" fill="#d4aaf0" transform="rotate(72)"/>
+    <ellipse cx="0" cy="-7" rx="4" ry="6" fill="#d4aaf0" transform="rotate(144)"/>
+    <ellipse cx="0" cy="-7" rx="4" ry="6" fill="#d4aaf0" transform="rotate(216)"/>
+    <ellipse cx="0" cy="-7" rx="4" ry="6" fill="#d4aaf0" transform="rotate(288)"/>
+    <circle cx="0" cy="0" r="3.5" fill="#f8f0ff"/><circle cx="0" cy="0" r="1.5" fill="#c49ee0"/>
+  </g>
+  <g transform="translate(775,36)">
+    <ellipse cx="0" cy="-7" rx="4" ry="6" fill="#d4aaf0"/>
+    <ellipse cx="0" cy="-7" rx="4" ry="6" fill="#d4aaf0" transform="rotate(72)"/>
+    <ellipse cx="0" cy="-7" rx="4" ry="6" fill="#d4aaf0" transform="rotate(144)"/>
+    <ellipse cx="0" cy="-7" rx="4" ry="6" fill="#d4aaf0" transform="rotate(216)"/>
+    <ellipse cx="0" cy="-7" rx="4" ry="6" fill="#d4aaf0" transform="rotate(288)"/>
+    <circle cx="0" cy="0" r="3.5" fill="#f8f0ff"/><circle cx="0" cy="0" r="1.5" fill="#c49ee0"/>
+  </g>
+</svg>

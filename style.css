@@ -64,7 +64,8 @@ a  { color: inherit; text-decoration: none; }
 .nav-logo {
   font-family: 'Pacifico', cursive;
   font-size: 1.4rem;
-  color: var(--accent-primary);
+  color: #ffffff;
+  text-shadow: 0 2px 8px rgba(160, 100, 220, 0.55);
 }
 
 .nav-links {
@@ -116,8 +117,8 @@ a  { color: inherit; text-decoration: none; }
   display: inline-block;
   padding: 6px 20px;
   border-radius: var(--radius-pill);
-  background: var(--bg-card);
-  color: var(--accent-primary);
+  background: rgba(180, 140, 230, 0.75);
+  color: #ffffff;
   font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 1px;
@@ -846,6 +847,21 @@ a  { color: inherit; text-decoration: none; }
   .ugc-card { flex: 0 0 calc((100% - 1rem) / 2.5); }
 }
 
+
+/* ── Floral divider ───────────────────────────────────────── */
+.floral-divider {
+  width: 100%;
+  line-height: 0;
+  margin: -20px 0;
+  position: relative;
+  z-index: 1;
+}
+
+.floral-divider img {
+  width: 100%;
+  height: 60px;
+  display: block;
+}
 
 /* ── Recent Work section ──────────────────────────────────── */
 #recent-work .section-header p { color: #ffffff; text-shadow: 0 1px 6px rgba(120, 60, 180, 0.35); }
