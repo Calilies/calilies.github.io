@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 60" preserveAspectRatio="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 60">
   <!-- vine -->
   <path d="M0,30 Q112,18 225,30 Q337,42 450,30 Q562,18 675,30 Q787,42 900,30"
         stroke="#c9a882" stroke-width="1.5" fill="none" opacity="0.55"/>
