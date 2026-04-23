@@ -140,7 +140,8 @@ a  { color: inherit; text-decoration: none; }
   width: clamp(210px, 37.5vw, 390px);
   height: auto;
   mix-blend-mode: multiply;
-  margin-bottom: 0.5rem;
+  margin: 0 auto 0.5rem;
+  display: block;
 }
 
 .hero-subtitle {
