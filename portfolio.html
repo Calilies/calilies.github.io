@@ -382,63 +382,145 @@
       });
     });
 
-    /* ── Roblox UGC thumbnails ────────────────────────────── */
+    /* ── Roblox thumbnail loader (proxy fallback + cache) ──── */
+    const RBLX_CACHE_PREFIX = 'rblx_thumb_';
+    const RBLX_CACHE_DURATION = 24 * 60 * 60 * 1000; // 24h
+
+    function getThumbCache(key) {
+      try {
+        const raw = localStorage.getItem(RBLX_CACHE_PREFIX + key);
+        if (!raw) return null;
+        const { url, ts } = JSON.parse(raw);
+        if (Date.now() - ts > RBLX_CACHE_DURATION) return null;
+        return url;
+      } catch { return null; }
+    }
+    function setThumbCache(key, url) {
+      try {
+        localStorage.setItem(RBLX_CACHE_PREFIX + key, JSON.stringify({ url, ts: Date.now() }));
+      } catch {}
+    }
+
+    function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+    function buildProxies(originalUrl) {
+      const u = new URL(originalUrl);
+      // RoProxy mirrors thumbnails.roblox.com → thumbnails.roproxy.com
+      const roproxy = `https://thumbnails.roproxy.com${u.pathname}${u.search}`;
+      return [
+        roproxy,
+        `https://corsproxy.io/?${encodeURIComponent(originalUrl)}`,
+        `https://api.allorigins.win/raw?url=${encodeURIComponent(originalUrl)}`,
+        `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(originalUrl)}`
+      ];
+    }
+
+    async function fetchRoblox(url, retries = 2) {
+      const proxies = buildProxies(url);
+      let lastErr;
+      for (let attempt = 0; attempt < retries; attempt++) {
+        for (const proxyUrl of proxies) {
+          try {
+            const res = await fetch(proxyUrl, { signal: AbortSignal.timeout(10000) });
+            if (res.status === 429 || res.status === 403) { await delay(150); continue; }
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            return await res.json();
+          } catch (e) {
+            lastErr = e;
+            await delay(120);
+          }
+        }
+        if (attempt < retries - 1) await delay(600);
+      }
+      throw lastErr || new Error('All proxies failed');
+    }
+
+    function applyThumb(selectorAttr, id, imageUrl, wrapClass) {
+      document.querySelectorAll(`[${selectorAttr}="${id}"]`).forEach(img => {
+        img.src = imageUrl;
+        const wrap = img.closest('.' + wrapClass);
+        if (img.complete && img.naturalWidth > 0) {
+          img.classList.add('loaded');
+          if (wrap) wrap.classList.add('img-loaded');
+        } else {
+          img.onload = () => {
+            img.classList.add('loaded');
+            if (wrap) wrap.classList.add('img-loaded');
+          };
+        }
+      });
+    }
+
     async function loadRobloxThumbnails() {
       const imgs = document.querySelectorAll('[data-rblx-id]');
       const assetIds = [], bundleIds = [];
       imgs.forEach(img => {
-        if (img.dataset.rblxType === 'bundle') bundleIds.push(img.dataset.rblxId);
-        else assetIds.push(img.dataset.rblxId);
+        const id = img.dataset.rblxId;
+        const cacheKey = (img.dataset.rblxType === 'bundle' ? 'bundle_' : 'asset_') + id;
+        const cached = getThumbCache(cacheKey);
+        if (cached) {
+          applyThumb('data-rblx-id', id, cached, 'ugc-card-img');
+          return;
+        }
+        if (img.dataset.rblxType === 'bundle') bundleIds.push(id);
+        else assetIds.push(id);
       });
-
-      function applyThumbnails(items) {
-        items.forEach(item => {
-          const id = String(item.targetId);
-          document.querySelectorAll(`[data-rblx-id="${id}"]`).forEach(img => {
-            img.src = item.imageUrl;
-            img.onload = () => {
-              img.classList.add('loaded');
-              img.closest('.ugc-card-img').classList.add('img-loaded');
-            };
-          });
-        });
-      }
 
       if (assetIds.length) {
         try {
-          const res = await fetch(`https://thumbnails.roblox.com/v1/assets?assetIds=${assetIds.join(',')}&returnPolicy=PlaceHolder&size=420x420&format=Png`);
-          const data = await res.json();
-          applyThumbnails(data.data || []);
-        } catch (_) {}
+          const data = await fetchRoblox(
+            `https://thumbnails.roblox.com/v1/assets?assetIds=${assetIds.join(',')}&returnPolicy=PlaceHolder&size=420x420&format=Png`
+          );
+          (data.data || []).forEach(item => {
+            const id = String(item.targetId);
+            if (item.imageUrl) {
+              setThumbCache('asset_' + id, item.imageUrl);
+              applyThumb('data-rblx-id', id, item.imageUrl, 'ugc-card-img');
+            }
+          });
+        } catch (e) { console.warn('UGC asset thumbs failed:', e.message); }
       }
       if (bundleIds.length) {
         try {
-          const res = await fetch(`https://thumbnails.roblox.com/v1/bundles/thumbnails?bundleIds=${bundleIds.join(',')}&size=420x420&format=Png`);
-          const data = await res.json();
-          applyThumbnails(data.data || []);
-        } catch (_) {}
+          const data = await fetchRoblox(
+            `https://thumbnails.roblox.com/v1/bundles/thumbnails?bundleIds=${bundleIds.join(',')}&size=420x420&format=Png`
+          );
+          (data.data || []).forEach(item => {
+            const id = String(item.targetId);
+            if (item.imageUrl) {
+              setThumbCache('bundle_' + id, item.imageUrl);
+              applyThumb('data-rblx-id', id, item.imageUrl, 'ugc-card-img');
+            }
+          });
+        } catch (e) { console.warn('UGC bundle thumbs failed:', e.message); }
       }
     }
 
-    /* ── Game thumbnails ──────────────────────────────────── */
     async function loadGameThumbnails() {
       const imgs = document.querySelectorAll('[data-place-id]');
       if (!imgs.length) return;
-      const placeIds = [...imgs].map(i => i.dataset.placeId);
+
+      const toFetch = [];
+      imgs.forEach(img => {
+        const id = img.dataset.placeId;
+        const cached = getThumbCache('place_' + id);
+        if (cached) applyThumb('data-place-id', id, cached, 'game-card-img');
+        else toFetch.push(id);
+      });
+      if (!toFetch.length) return;
+
       try {
-        const res = await fetch(`https://thumbnails.roblox.com/v1/places/gameicons?placeIds=${placeIds.join(',')}&returnPolicy=PlaceHolder&size=512x512&format=Png`);
-        const data = await res.json();
+        const data = await fetchRoblox(
+          `https://thumbnails.roblox.com/v1/places/gameicons?placeIds=${toFetch.join(',')}&returnPolicy=PlaceHolder&size=512x512&format=Png`
+        );
         (data.data || []).forEach(item => {
           const id = String(item.targetId);
-          document.querySelectorAll(`[data-place-id="${id}"]`).forEach(img => {
-            img.src = item.imageUrl;
-            img.onload = () => {
-              img.classList.add('loaded');
-              img.closest('.game-card-img').classList.add('img-loaded');
-            };
-          });
+          if (item.imageUrl) {
+            setThumbCache('place_' + id, item.imageUrl);
+            applyThumb('data-place-id', id, item.imageUrl, 'game-card-img');
+          }
         });
-      } catch (_) {}
+      } catch (e) { console.warn('Game thumbs failed:', e.message); }
     }
 
     /* ── 3D Assets sub-tabs ──────────────────────────────────── */
