@@ -6,7 +6,9 @@
       "Bash(gh run *)",
       "Bash(where gh *)",
       "WebFetch(domain:calilies.net)",
-      "WebFetch(domain:api.github.com)"
+      "WebFetch(domain:api.github.com)",
+      "Bash(grep -E \"\\\\.png$\")",
+      "Bash(grep -E \"\\\\.\\(jpg|jpeg|webp\\)$\")"
     ]
   }
 }
