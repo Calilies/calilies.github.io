@@ -41,7 +41,8 @@ a.nav-logo {
 }
 
 .port-hero-inner p {
-  color: var(--text-muted);
+  color: #ffffff;
+  text-shadow: 0 1px 6px rgba(120, 60, 180, 0.35);
   font-weight: 600;
   font-size: 1rem;
   max-width: 480px;
