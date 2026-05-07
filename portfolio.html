@@ -55,8 +55,35 @@
     <!-- ── UGC tab ──────────────────────────────────────────── -->
     <section class="port-panel active" id="tab-ugc">
 
+      <!-- Personal UGC -->
+      <div class="assets-block">
+        <div class="assets-block-header">
+          <h3>✨ Personal UGC</h3>
+        </div>
+        <div class="port-empty">
+          <span class="port-empty-icon">🎨</span>
+          <p>Personal UGC coming soon!</p>
+        </div>
+      </div>
+
+      <!-- Client Work -->
+      <div class="assets-block">
+        <div class="assets-block-header">
+          <h3>🎮 Client Work</h3>
+        </div>
+
+        <div class="assets-subtabs-wrap">
+          <div class="assets-subtabs" id="ugc-subtabs">
+            <button class="assets-subtab active" data-ugc-filter="all">All</button>
+            <button class="assets-subtab" data-ugc-filter="spongebob">Paramount &amp; Gamefam</button>
+            <button class="assets-subtab" data-ugc-filter="barbie">Barbie</button>
+            <button class="assets-subtab" data-ugc-filter="adidas">Adidas</button>
+            <button class="assets-subtab" data-ugc-filter="medal">Medal</button>
+          </div>
+        </div>
+
       <!-- Brand: Paramount & Gamefam -->
-      <div class="brand-section brand-spongebob">
+      <div class="brand-section brand-spongebob" data-ugc-brand="spongebob">
         <div class="brand-header">
           <div class="brand-title">
             <h3>Paramount &amp; Gamefam</h3>
@@ -96,7 +123,7 @@
       </div>
 
       <!-- Brand: Barbie & Gamefam -->
-      <div class="brand-section brand-barbie">
+      <div class="brand-section brand-barbie" data-ugc-brand="barbie">
         <div class="brand-header">
           <div class="brand-title">
             <h3>Barbie Dreamhouse Tycoon &amp; Gamefam</h3>
@@ -132,7 +159,7 @@
       </div>
 
       <!-- Brand: Turning Tables & Adidas -->
-      <div class="brand-section brand-adidas">
+      <div class="brand-section brand-adidas" data-ugc-brand="adidas">
         <div class="brand-header">
           <div class="brand-title">
             <h3>Turning Tables &amp; Adidas</h3>
@@ -176,7 +203,7 @@
       </div>
 
       <!-- Brand: Turning Tables & Medal TV -->
-      <div class="brand-section brand-medal">
+      <div class="brand-section brand-medal" data-ugc-brand="medal">
         <div class="brand-header">
           <div class="brand-title">
             <h3>Turning Tables &amp; Medal TV</h3>
@@ -230,6 +257,8 @@
           <button class="slider-btn slider-btn-next" aria-label="Next">&#8250;</button>
         </div>
       </div>
+
+      </div><!-- end client work block -->
 
     </section>
 
@@ -549,6 +578,18 @@
         });
       } catch (e) { console.warn('Group thumbs failed:', e.message); }
     }
+
+    /* ── UGC brand filter ────────────────────────────────────── */
+    document.querySelectorAll('#ugc-subtabs .assets-subtab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#ugc-subtabs .assets-subtab').forEach(t => t.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.ugcFilter;
+        document.querySelectorAll('[data-ugc-brand]').forEach(section => {
+          section.style.display = (filter === 'all' || section.dataset.ugcBrand === filter) ? '' : 'none';
+        });
+      });
+    });
 
     /* ── 3D Assets sub-tabs ──────────────────────────────────── */
     document.querySelectorAll('.assets-subtab').forEach(btn => {
