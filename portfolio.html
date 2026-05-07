@@ -309,8 +309,8 @@
         </a>
 
         <a href="https://www.roblox.com/communities/6774710/Beach-Buddies#!/about" target="_blank" rel="noopener" class="game-card">
-          <div class="game-card-img game-card-img--placeholder">
-            <span>🐾</span>
+          <div class="game-card-img">
+            <img data-group-id="6774710" alt="Paws Life">
           </div>
           <div class="game-card-info">
             <p class="game-name">Paws Life</p>
@@ -523,6 +523,33 @@
       } catch (e) { console.warn('Game thumbs failed:', e.message); }
     }
 
+    async function loadGroupThumbnails() {
+      const imgs = document.querySelectorAll('[data-group-id]');
+      if (!imgs.length) return;
+
+      const toFetch = [];
+      imgs.forEach(img => {
+        const id = img.dataset.groupId;
+        const cached = getThumbCache('group_' + id);
+        if (cached) applyThumb('data-group-id', id, cached, 'game-card-img');
+        else toFetch.push(id);
+      });
+      if (!toFetch.length) return;
+
+      try {
+        const data = await fetchRoblox(
+          `https://thumbnails.roblox.com/v1/groups/icons?groupIds=${toFetch.join(',')}&size=420x420&format=Png`
+        );
+        (data.data || []).forEach(item => {
+          const id = String(item.targetId);
+          if (item.imageUrl) {
+            setThumbCache('group_' + id, item.imageUrl);
+            applyThumb('data-group-id', id, item.imageUrl, 'game-card-img');
+          }
+        });
+      } catch (e) { console.warn('Group thumbs failed:', e.message); }
+    }
+
     /* ── 3D Assets sub-tabs ──────────────────────────────────── */
     document.querySelectorAll('.assets-subtab').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -536,6 +563,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       loadRobloxThumbnails();
       loadGameThumbnails();
+      loadGroupThumbnails();
     });
   </script>
 </body>
