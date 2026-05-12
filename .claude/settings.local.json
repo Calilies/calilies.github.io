@@ -13,7 +13,21 @@
       "Bash(node -e ' *)",
       "Bash(curl -s 'https://thumbnails.roblox.com/v1/assets?assetIds=__TRACKED_VAR__&returnPolicy=PlaceHolder&size=420x420&format=Png')",
       "Read(//tmp/**)",
-      "Bash(awk 'BEGIN{print \"{\"} {print} END{print \"}\"}')"
+      "Bash(awk 'BEGIN{print \"{\"} {print} END{print \"}\"}')",
+      "Bash(curl -I \"https://tr.rbxcdn.com/180DAY-41860fc43d5c1f95e1f5ee04f437080a/420/420/Hat/Png/noFilter\")",
+      "Bash(curl -I -H \"User-Agent: Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36\" -H \"Referer: https://www.roblox.com/\" \"https://tr.rbxcdn.com/180DAY-41860fc43d5c1f95e1f5ee04f437080a/420/420/Hat/Png/noFilter\")",
+      "Bash(curl -s \"https://tr.rbxcdn.com/180DAY-41860fc43d5c1f95e1f5ee04f437080a/420/420/Hat/Png/noFilter\")",
+      "Bash(curl -s \"https://thumbnails.roblox.com/v1/assets?assetIds=16603890398&returnPolicy=PlaceHolder&size=420x420&format=Png\")",
+      "Bash(curl -s \"https://calilies.github.io/thumbnails.json\")",
+      "Bash(curl -sL \"https://calilies.github.io/thumbnails.json\")",
+      "Bash(curl -sL \"https://calilies.github.io/portfolio.html\")",
+      "Bash(curl -sI -H \"Referer: https://calilies.github.io/\" -H \"User-Agent: Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/124.0.0.0 Safari/537.36\" \"https://tr.rbxcdn.com/180DAY-41860fc43d5c1f95e1f5ee04f437080a/420/420/Hat/Png/noFilter\")",
+      "Bash(curl -sL \"http://calilies.net/thumbnails.json\")",
+      "Bash(curl -sL \"http://calilies.net/portfolio.html\")",
+      "Bash(curl -sI -H \"User-Agent: Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/124.0.0.0 Safari/537.36\" -H \"Referer: https://calilies.net/\" \"https://tr.rbxcdn.com/180DAY-41860fc43d5c1f95e1f5ee04f437080a/420/420/Hat/Png/noFilter\")",
+      "Bash(curl -sI -H \"User-Agent: Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/124.0.0.0 Safari/537.36\" \"https://tr.rbxcdn.com/180DAY-41860fc43d5c1f95e1f5ee04f437080a/420/420/Hat/Png/noFilter\")",
+      "Bash(curl -sI -L \"https://calilies.net/portfolio.html\")",
+      "Bash(curl -sI -L \"https://calilies.net/thumbnails.json\")"
     ]
   }
 }
