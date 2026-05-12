@@ -741,11 +741,7 @@ a  { color: inherit; text-decoration: none; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: opacity 0.3s, transform 0.35s;
-  opacity: 0;
-}
-
-.ugc-card-img img.loaded {
+  transition: transform 0.35s;
   opacity: 1;
 }
 
