@@ -27,7 +27,10 @@
       "Bash(curl -sI -H \"User-Agent: Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/124.0.0.0 Safari/537.36\" -H \"Referer: https://calilies.net/\" \"https://tr.rbxcdn.com/180DAY-41860fc43d5c1f95e1f5ee04f437080a/420/420/Hat/Png/noFilter\")",
       "Bash(curl -sI -H \"User-Agent: Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/124.0.0.0 Safari/537.36\" \"https://tr.rbxcdn.com/180DAY-41860fc43d5c1f95e1f5ee04f437080a/420/420/Hat/Png/noFilter\")",
       "Bash(curl -sI -L \"https://calilies.net/portfolio.html\")",
-      "Bash(curl -sI -L \"https://calilies.net/thumbnails.json\")"
+      "Bash(curl -sI -L \"https://calilies.net/thumbnails.json\")",
+      "Bash(curl -sL \"https://calilies.net/portfolio.html\")",
+      "Bash(curl -s \"https://thumbnails.roblox.com/v1/places/gameicons?placeIds=18199615050,13166293021,106890908266408,447452406&returnPolicy=PlaceHolder&size=512x512&format=Png\")",
+      "Bash(curl -s \"https://thumbnails.roblox.com/v1/groups/icons?groupIds=6774710&size=420x420&format=Png\")"
     ]
   }
 }
