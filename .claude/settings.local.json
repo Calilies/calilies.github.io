@@ -8,7 +8,12 @@
       "WebFetch(domain:calilies.net)",
       "WebFetch(domain:api.github.com)",
       "Bash(grep -E \"\\\\.png$\")",
-      "Bash(grep -E \"\\\\.\\(jpg|jpeg|webp\\)$\")"
+      "Bash(grep -E \"\\\\.\\(jpg|jpeg|webp\\)$\")",
+      "Bash(curl -s \"https://thumbnails.roblox.com/v1/assets?assetIds=101604353675785,78517602178696,110422474466461&returnPolicy=PlaceHolder&size=420x420&format=Png\")",
+      "Bash(node -e ' *)",
+      "Bash(curl -s 'https://thumbnails.roblox.com/v1/assets?assetIds=__TRACKED_VAR__&returnPolicy=PlaceHolder&size=420x420&format=Png')",
+      "Read(//tmp/**)",
+      "Bash(awk 'BEGIN{print \"{\"} {print} END{print \"}\"}')"
     ]
   }
 }
