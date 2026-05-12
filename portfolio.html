@@ -367,7 +367,7 @@
               <div class="ugc-card-info"><p class="ugc-name">adidas Cream Trendy Shorts</p><span class="ugc-price paid">R$60</span></div>
             </a>
             <a href="https://www.roblox.com/bundles/261468916974146/adidas-Festival-Platform-Boots" target="_blank" rel="noopener" class="ugc-card">
-              <div class="ugc-card-img"><img data-rblx-id="261468916974146" data-rblx-type="bundle" alt="adidas Festival Platform Boots"></div>
+              <div class="ugc-card-img"><img src="https://tr.rbxcdn.com/30DAY-ShoesBundle-3EB29BA273C3991E58A4C0DC1D32297B-Png/420/420/ShoesBundle/Png/noFilter" data-rblx-id="261468916974146" data-rblx-type="bundle" alt="adidas Festival Platform Boots"></div>
               <div class="ugc-card-info"><p class="ugc-name">adidas Festival Platform Boots</p><span class="ugc-price paid">R$55</span></div>
             </a>
             <a href="https://www.roblox.com/catalog/83378575556190/adidas-Festival-Mesh-Top" target="_blank" rel="noopener" class="ugc-card">
@@ -592,10 +592,12 @@
     /* ── UGC slider arrows ────────────────────────────────── */
     document.querySelectorAll('.ugc-slider-wrap').forEach(wrap => {
       const grid = wrap.querySelector('.ugc-grid');
-      wrap.querySelector('.slider-btn-prev').addEventListener('click', () => {
+      const prevBtn = wrap.querySelector('.slider-btn-prev');
+      const nextBtn = wrap.querySelector('.slider-btn-next');
+      if (prevBtn) prevBtn.addEventListener('click', () => {
         grid.scrollBy({ left: -grid.clientWidth, behavior: 'smooth' });
       });
-      wrap.querySelector('.slider-btn-next').addEventListener('click', () => {
+      if (nextBtn) nextBtn.addEventListener('click', () => {
         grid.scrollBy({ left: grid.clientWidth, behavior: 'smooth' });
       });
     });
