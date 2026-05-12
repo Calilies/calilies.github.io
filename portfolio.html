@@ -668,6 +668,12 @@
       });
     }
 
+    function chunk(arr, size) {
+      const out = [];
+      for (let i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size));
+      return out;
+    }
+
     async function loadRobloxThumbnails() {
       const imgs = document.querySelectorAll('[data-rblx-id]');
       const assetIds = [], bundleIds = [];
@@ -683,10 +689,10 @@
         else assetIds.push(id);
       });
 
-      if (assetIds.length) {
+      for (const batch of chunk(assetIds, 30)) {
         try {
           const data = await fetchRoblox(
-            `https://thumbnails.roblox.com/v1/assets?assetIds=${assetIds.join(',')}&returnPolicy=PlaceHolder&size=420x420&format=Png`
+            `https://thumbnails.roblox.com/v1/assets?assetIds=${batch.join(',')}&returnPolicy=PlaceHolder&size=420x420&format=Png`
           );
           (data.data || []).forEach(item => {
             const id = String(item.targetId);
@@ -695,12 +701,12 @@
               applyThumb('data-rblx-id', id, item.imageUrl, 'ugc-card-img');
             }
           });
-        } catch (e) { console.warn('UGC asset thumbs failed:', e.message); }
+        } catch (e) { console.warn('UGC asset thumbs batch failed:', e.message); }
       }
-      if (bundleIds.length) {
+      for (const batch of chunk(bundleIds, 30)) {
         try {
           const data = await fetchRoblox(
-            `https://thumbnails.roblox.com/v1/bundles/thumbnails?bundleIds=${bundleIds.join(',')}&size=420x420&format=Png`
+            `https://thumbnails.roblox.com/v1/bundles/thumbnails?bundleIds=${batch.join(',')}&size=420x420&format=Png`
           );
           (data.data || []).forEach(item => {
             const id = String(item.targetId);
@@ -709,7 +715,7 @@
               applyThumb('data-rblx-id', id, item.imageUrl, 'ugc-card-img');
             }
           });
-        } catch (e) { console.warn('UGC bundle thumbs failed:', e.message); }
+        } catch (e) { console.warn('UGC bundle thumbs batch failed:', e.message); }
       }
     }
 
