@@ -675,10 +675,25 @@
     }
 
     async function loadRobloxThumbnails() {
+      /* Step 1 – apply any pre-fetched thumbnails from thumbnails.json */
+      let staticThumbs = {};
+      try {
+        const res = await fetch('thumbnails.json');
+        if (res.ok) staticThumbs = await res.json();
+      } catch (e) { /* file missing or fetch failed – fall back to API */ }
+
       const imgs = document.querySelectorAll('[data-rblx-id]');
       const assetIds = [], bundleIds = [];
+
       imgs.forEach(img => {
         const id = img.dataset.rblxId;
+        /* Check static file first */
+        if (staticThumbs[id]) {
+          applyThumb('data-rblx-id', id, staticThumbs[id], 'ugc-card-img');
+          setThumbCache('asset_' + id, staticThumbs[id]);
+          return;
+        }
+        /* Then check session cache */
         const cacheKey = (img.dataset.rblxType === 'bundle' ? 'bundle_' : 'asset_') + id;
         const cached = getThumbCache(cacheKey);
         if (cached) {
@@ -689,6 +704,7 @@
         else assetIds.push(id);
       });
 
+      /* Step 2 – fetch any remaining IDs not in the static file */
       for (const batch of chunk(assetIds, 30)) {
         try {
           const data = await fetchRoblox(
