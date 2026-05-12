@@ -181,36 +181,12 @@ a.nav-logo {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0;
-  transition: opacity 0.3s, transform 0.35s;
-}
-
-.game-card-img img.loaded {
   opacity: 1;
+  transition: transform 0.35s;
 }
 
 .game-card:hover .game-card-img img {
   transform: scale(1.05);
-}
-
-/* Shimmer on game cards */
-.game-card-img::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg,
-    transparent 0%,
-    rgba(255,255,255,0.35) 50%,
-    transparent 100%
-  );
-  background-size: 200% 100%;
-  animation: shimmer 1.4s infinite;
-  pointer-events: none;
-}
-
-.game-card-img.img-loaded::after,
-.game-card-img--placeholder::after {
-  display: none;
 }
 
 .game-card-info {
