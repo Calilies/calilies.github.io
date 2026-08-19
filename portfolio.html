@@ -1009,6 +1009,63 @@
       }
     }
 
+    function applyRobloxPrice(id, details) {
+      document.querySelectorAll(`[data-rblx-id="${id}"]`).forEach(img => {
+        const info = img.closest('.ugc-card')?.querySelector('.ugc-card-info');
+        if (!info || info.querySelector('.ugc-price')) return;
+
+        const price = document.createElement('span');
+        price.className = 'ugc-price';
+
+        if (details.IsForSale && Number.isFinite(details.PriceInRobux)) {
+          price.classList.add(details.PriceInRobux === 0 ? 'free' : 'paid');
+          price.textContent = details.PriceInRobux === 0 ? 'Free' : `R${details.PriceInRobux}`;
+        } else if (details.IsPublicDomain) {
+          price.classList.add('free');
+          price.textContent = 'Free';
+        } else {
+          price.classList.add('offsale');
+          price.textContent = 'Offsale';
+        }
+
+        info.appendChild(price);
+      });
+    }
+
+    async function fetchRobloxAssetDetails(id) {
+      const officialUrl = `https://economy.roblox.com/v2/assets/${id}/details`;
+      const urls = [
+        `https://economy.roproxy.com/v2/assets/${id}/details`,
+        `https://corsproxy.io/?${encodeURIComponent(officialUrl)}`,
+        `https://api.allorigins.win/raw?url=${encodeURIComponent(officialUrl)}`
+      ];
+
+      for (const url of urls) {
+        try {
+          const response = await fetch(url, { signal: AbortSignal.timeout(10000) });
+          if (response.ok) return await response.json();
+        } catch (e) { /* try the next source */ }
+      }
+      throw new Error(`Price lookup failed for ${id}`);
+    }
+
+    async function loadRobloxPrices() {
+      const missingIds = [...new Set(
+        [...document.querySelectorAll('.ugc-card [data-rblx-id]')]
+          .filter(img => !img.closest('.ugc-card')?.querySelector('.ugc-price'))
+          .filter(img => img.dataset.rblxType !== 'bundle')
+          .map(img => img.dataset.rblxId)
+      )];
+
+      for (const batch of chunk(missingIds, 5)) {
+        await Promise.allSettled(batch.map(async id => {
+          const details = await fetchRobloxAssetDetails(id);
+          applyRobloxPrice(id, details);
+        }));
+        await delay(150);
+      }
+    }
+
     async function loadGameThumbnails() {
       const imgs = document.querySelectorAll('[data-place-id]');
       if (!imgs.length) return;
@@ -1100,6 +1157,7 @@
 
     document.addEventListener('DOMContentLoaded', () => {
       loadRobloxThumbnails();
+      loadRobloxPrices();
       loadGameThumbnails();
       loadGroupThumbnails();
     });
