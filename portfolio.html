@@ -1360,7 +1360,7 @@
 
         if (details.IsForSale && Number.isFinite(details.PriceInRobux)) {
           price.classList.add(details.PriceInRobux === 0 ? 'free' : 'paid');
-          price.textContent = details.PriceInRobux === 0 ? 'Free' : 'R
+          price.textContent = details.PriceInRobux === 0 ? 'Free' : 'R' + String.fromCharCode(36) + details.PriceInRobux;
         } else if (details.IsPublicDomain) {
           price.classList.add('free');
           price.textContent = 'Free';
