@@ -23,9 +23,9 @@ body::before {
   position: fixed;
   inset: 0;
   z-index: -2;
-  background: url('pics/Gradient.png') center / cover no-repeat;
-  filter: blur(3px);
-  transform: scale(1.02);
+  background: url('pics/sunset-background.webp') center / cover no-repeat;
+  filter: blur(5px);
+  transform: scale(1.03);
 }
 
 /* Pink-to-lilac gradient overlay */
