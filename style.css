@@ -75,7 +75,7 @@ a  { color: inherit; text-decoration: none; }
 }
 
 .nav-links a {
-  font-size: 0.92rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: var(--text-body);
   transition: color 0.2s;
