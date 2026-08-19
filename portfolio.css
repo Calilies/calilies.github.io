@@ -306,30 +306,24 @@ a.nav-logo {
   display: none !important;
 }
 
-#assets-demonology .port-empty {
-  padding: 0;
-}
-
-#assets-demonology .port-empty > * {
-  display: none;
-}
-
-#assets-demonology .port-empty::before {
-  content: "";
-  display: block;
+#assets-demonology {
   width: min(100%, 904px);
-  min-height: 600px;
-  aspect-ratio: 904 / 1814;
+  min-height: 1814px;
   margin: 0 auto;
-  background-image: url("https://raw.githubusercontent.com/Calilies/calilies.github.io/51a12097016a72cf74b9633c84a835702c5b5afe/pics/demonology/client-work-gallery.webp");
+  background-image: url("https://raw.githubusercontent.com/Calilies/calilies.github.io/main/pics/demonology/client-work-gallery.webp?v=20260819-4");
   background-position: center top;
-  background-size: contain;
+  background-size: 100% auto;
   background-repeat: no-repeat;
   border-radius: 20px;
+}
+
+#assets-demonology .port-empty {
+  display: none !important;
 }
 
 /* ── Responsive ───────────────────────────────────────────── */
 @media (max-width: 600px) {
   .games-grid { grid-template-columns: repeat(2, 1fr); }
   .port-tab { padding: 8px 18px; font-size: 0.9rem; }
+  #assets-demonology { min-height: 200vw; }
 }
