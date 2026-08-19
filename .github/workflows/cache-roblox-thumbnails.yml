@@ -129,6 +129,28 @@ jobs:
                   if details is not None:
                       prices[item_id] = details
 
+          def get_bundle_details(item_id):
+              url = f'https://catalog.roblox.com/v1/bundles/{item_id}/details'
+              try:
+                  data = get_json(url)
+                  product = data.get('product') or {}
+                  price = product.get('priceInRobux')
+                  return {
+                      'PriceInRobux': price,
+                      'IsForSale': bool(product.get('isForSale')),
+                      'IsPublicDomain': bool(product.get('isPublicDomain')),
+                      'Sales': 0,
+                  }
+              except Exception as e:
+                  print(f'Failed bundle metadata {item_id}: {e}')
+                  return None
+
+          for item_id in bundle_ids:
+              if item_id not in prices:
+                  details = get_bundle_details(item_id)
+                  if details is not None:
+                      prices[item_id] = details
+
           prices_path.write_text(
               json.dumps(prices, indent=2, sort_keys=True) + '\n',
               encoding='utf-8'

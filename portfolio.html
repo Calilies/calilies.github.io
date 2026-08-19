@@ -1399,7 +1399,6 @@
 
       const ids = [...new Set(
         [...document.querySelectorAll('.ugc-card [data-rblx-id]')]
-          .filter(img => img.dataset.rblxType !== 'bundle')
           .filter(img => !img.closest('.ugc-card')?.querySelector('.ugc-price') || img.closest('.brand-misc'))
           .map(img => img.dataset.rblxId)
       )];
