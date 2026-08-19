@@ -327,3 +327,8 @@ a.nav-logo {
   .port-tab { padding: 8px 18px; font-size: 0.9rem; }
   #assets-demonology { min-height: 200vw; }
 }
+
+
+/* Demonology img element final override */
+#assets-demonology { background: none !important; min-height: 0 !important; width: 100% !important; }
+.demonology-gallery { display: block; width: min(100%, 900px); height: auto; margin: 0 auto; border-radius: 20px; }
