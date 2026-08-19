@@ -4,6 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio | Calilies</title>
+  <link rel="canonical" href="https://calilies.net/portfolio">
+  <script>
+    if (window.location.pathname === '/portfolio.html') {
+      window.location.replace('/portfolio' + window.location.search + window.location.hash);
+    }
+  </script>
   <link rel="stylesheet" href="themes.css">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="portfolio.css">
@@ -14,16 +20,16 @@
   <!-- ── Navigation ──────────────────────────────────────── -->
   <nav class="nav">
     <div class="nav-left">
-      <a href="index.html" class="nav-logo nav-brand" aria-label="Calilies home">
+      <a href="/home" class="nav-logo nav-brand" aria-label="Calilies home">
         <img src="pics/shopping-profile.webp" alt="" class="nav-avatar">
         <span>Calilies</span>
       </a>
       <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="portfolio.html" class="nav-active">Portfolio</a></li>
+        <li><a href="/home">Home</a></li>
+        <li><a href="/portfolio" class="nav-active">Portfolio</a></li>
       </ul>
     </div>
-    <a href="index.html#contact" class="nav-contact">Contact Me</a>
+    <a href="/home#contact" class="nav-contact">Contact Me</a>
   </nav>
 
 
