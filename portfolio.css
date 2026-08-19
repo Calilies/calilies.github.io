@@ -321,25 +321,39 @@ a.nav-logo {
 .assets-subpanel { display: none; }
 .assets-subpanel.active { display: block; }
 
-/* ── Personal UGC multi-row grid ──────────────────────────── */
+/* ── Personal UGC three-row carousels ─────────────────────── */
 .ugc-slider-wrap--grid {
   padding: 0;
 }
 
 .ugc-grid--rows {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+  grid-template-rows: repeat(3, auto);
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(155px, calc((100% - 4rem) / 5));
   gap: 1rem;
-  overflow: visible;
-  scroll-snap-type: none;
-  padding-bottom: 0;
+  align-items: start;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 6px;
+}
+
+.ugc-grid--rows::-webkit-scrollbar {
+  display: none;
 }
 
 .ugc-grid--rows .ugc-card {
   flex: none;
   width: auto;
-  min-width: unset;
-  scroll-snap-align: none;
+  min-width: 0;
+  scroll-snap-align: start;
+}
+
+.ugc-slider-wrap--grid .slider-btn {
+  top: 50%;
 }
 
 /* Three-row carousels when an individual UGC brand is selected */
