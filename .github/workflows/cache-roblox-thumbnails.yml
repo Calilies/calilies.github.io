@@ -122,7 +122,7 @@ jobs:
           missing_price_ids = [item_id for item_id in asset_ids if item_id not in prices]
           print(f'Fetching {len(missing_price_ids)} missing Roblox price records.')
 
-          with ThreadPoolExecutor(max_workers=4) as pool:
+          with ThreadPoolExecutor(max_workers=2) as pool:
               futures = [pool.submit(get_asset_details, item_id) for item_id in missing_price_ids]
               for future in as_completed(futures):
                   item_id, details = future.result()
