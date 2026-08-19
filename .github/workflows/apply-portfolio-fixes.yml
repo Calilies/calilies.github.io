@@ -1,0 +1,96 @@
+name: Apply portfolio fixes
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/apply-portfolio-fixes.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply-fixes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Patch portfolio
+        shell: python
+        run: |
+          from pathlib import Path
+
+          p = Path('portfolio.html')
+          s = p.read_text(encoding='utf-8')
+
+          # Replace the Demonology placeholder with a real image element.
+          old = '''        <div class="assets-subpanel" id="assets-demonology">
+          <div class="port-empty"><span class="port-empty-icon">🧊</span><p>Demonology assets coming soon!</p></div>
+        </div>'''
+          new = '''        <div class="assets-subpanel" id="assets-demonology">
+          <img class="demonology-gallery" src="pics/demonology/gallery600.webp?v=20260819-1" alt="Demonology 3D asset gallery">
+        </div>'''
+          if old in s:
+              s = s.replace(old, new, 1)
+
+          # Add the three new Adidas items once, directly after Chaos Aura.
+          if '227905024792633' not in s:
+              marker = '''            <a href="https://www.roblox.com/catalog/71812539916895/adidas-Chaos-Aura" target="_blank" rel="noopener" class="ugc-card">
+              <div class="ugc-card-img"><img src="https://tr.rbxcdn.com/180DAY-8f83bd47439662fd5079a4f8d87384d3/420/420/BackAccessory/Png/noFilter" data-rblx-id="71812539916895" alt="adidas Chaos Aura"></div>
+              <div class="ugc-card-info"><p class="ugc-name">adidas Chaos Aura</p><span class="ugc-price paid">R$140</span></div>
+            </a>'''
+              additions = marker + '''
+            <a href="https://www.roblox.com/bundles/227905024792633/adidas-Trionda-Wave-2026-Boots" target="_blank" rel="noopener" class="ugc-card">
+              <div class="ugc-card-img"><img src="pics/ugc/227905024792633.png" data-rblx-id="227905024792633" data-rblx-type="bundle" alt="adidas Trionda Wave 2026 Boots"></div>
+              <div class="ugc-card-info"><p class="ugc-name">adidas Trionda Wave 2026 Boots</p></div>
+            </a>
+            <a href="https://www.roblox.com/catalog/122279292783991/adidas-Host-Fusion-Bucket-Hat" target="_blank" rel="noopener" class="ugc-card">
+              <div class="ugc-card-img"><img src="pics/ugc/122279292783991.png" data-rblx-id="122279292783991" alt="adidas Host Fusion Bucket Hat"></div>
+              <div class="ugc-card-info"><p class="ugc-name">adidas Host Fusion Bucket Hat</p></div>
+            </a>
+            <a href="https://www.roblox.com/catalog/125241081869206/adidas-Festival-Wristband-Stack" target="_blank" rel="noopener" class="ugc-card">
+              <div class="ugc-card-img"><img src="pics/ugc/125241081869206.png" data-rblx-id="125241081869206" alt="adidas Festival Wristband Stack"></div>
+              <div class="ugc-card-info"><p class="ugc-name">adidas Festival Wristband Stack</p></div>
+            </a>'''
+              if marker not in s:
+                  raise SystemExit('Could not find Adidas insertion marker')
+              s = s.replace(marker, additions, 1)
+
+          p.write_text(s, encoding='utf-8')
+
+          css = Path('portfolio.css')
+          c = css.read_text(encoding='utf-8')
+          rule = '''
+
+/* Reliable Demonology gallery rendering */
+#assets-demonology {
+  background: none !important;
+  min-height: 0 !important;
+  width: 100% !important;
+  margin: 0 auto;
+}
+
+.demonology-gallery {
+  display: block;
+  width: min(100%, 900px);
+  height: auto;
+  margin: 0 auto;
+  border-radius: 20px;
+}
+'''
+          if '/* Reliable Demonology gallery rendering */' not in c:
+              c += rule
+          css.write_text(c, encoding='utf-8')
+
+      - name: Commit fixes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add portfolio.html portfolio.css
+          if git diff --cached --quiet; then
+            echo "No portfolio changes to commit."
+          else
+            git commit -m "Fix Demonology gallery and add Adidas UGC items"
+            git push
+          fi
