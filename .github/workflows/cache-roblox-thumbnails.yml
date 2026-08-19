@@ -8,6 +8,7 @@ on:
     paths:
       - '.github/workflows/cache-roblox-thumbnails.yml'
       - 'portfolio.html'
+      - 'index.html'
 
 permissions:
   contents: write
@@ -30,7 +31,10 @@ jobs:
           import urllib.request
           from concurrent.futures import ThreadPoolExecutor, as_completed
 
-          html = pathlib.Path('portfolio.html').read_text(encoding='utf-8')
+          html = '\n'.join(
+              pathlib.Path(name).read_text(encoding='utf-8')
+              for name in ('portfolio.html', 'index.html')
+          )
           asset_ids = sorted(set(re.findall(r'data-rblx-id="(\d+)"', html)))
           bundle_ids = sorted(set(re.findall(r'data-rblx-id="(\d+)"\s+data-rblx-type="bundle"', html)))
           asset_ids = [i for i in asset_ids if i not in set(bundle_ids)]
