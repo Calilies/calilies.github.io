@@ -211,6 +211,51 @@ a.nav-logo {
   letter-spacing: 0.2px;
 }
 
+.game-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.55rem;
+}
+
+.game-play {
+  flex-shrink: 0;
+}
+
+.game-players {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.22rem 0.48rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg-card);
+  color: var(--text-body);
+  font-size: 0.68rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.game-players::before {
+  content: '';
+  width: 0.42rem;
+  height: 0.42rem;
+  flex: 0 0 0.42rem;
+  border-radius: 50%;
+  background: #38b96b;
+  box-shadow: 0 0 0 2px rgba(56, 185, 107, 0.16);
+}
+
+.game-players.is-zero::before {
+  background: #a58cad;
+  box-shadow: none;
+}
+
+.game-players--community::before {
+  background: var(--accent-primary);
+  box-shadow: none;
+}
+
 
 /* ── 3D Assets blocks ─────────────────────────────────────── */
 .assets-block {
