@@ -20,54 +20,40 @@ jobs:
         shell: python
         run: |
           from pathlib import Path
-          import re
 
           p = Path('portfolio.html')
           s = p.read_text(encoding='utf-8')
 
-          # Add the three Adidas cards directly inside the Adidas carousel.
+          # Remove the All button and its placeholder panel.
+          s = s.replace('            <button class="assets-subtab active" data-subtab="assets-all">All</button>\n', '')
+          all_panel = '        <div class="assets-subpanel active" id="assets-all">\n          <div class="port-empty"><span class="port-empty-icon">🧊</span><p>3D assets coming soon!</p></div>\n        </div>\n'
+          s = s.replace(all_panel, '')
+
+          # Make Demonology the default active client-work tab.
+          s = s.replace('<button class="assets-subtab" data-subtab="assets-demonology">Demonology</button>', '<button class="assets-subtab active" data-subtab="assets-demonology">Demonology</button>', 1)
+
+          # Replace Demonology placeholder with the real gallery image.
+          old_demon = '        <div class="assets-subpanel" id="assets-demonology">\n          <div class="port-empty"><span class="port-empty-icon">🧊</span><p>Demonology assets coming soon!</p></div>\n        </div>'
+          new_demon = '        <div class="assets-subpanel active" id="assets-demonology">\n          <img class="demonology-gallery" src="pics/demonology/client-work-gallery.webp?v=20260819-3" alt="Demonology 3D asset gallery">\n        </div>'
+          s = s.replace(old_demon, new_demon, 1)
+
+          # Add the three requested Adidas cards inside the Adidas UGC carousel.
           if '227905024792633' not in s:
-              cards = '''
-            <a href="https://www.roblox.com/bundles/227905024792633/adidas-Trionda-Wave-2026-Boots" target="_blank" rel="noopener" class="ugc-card">
-              <div class="ugc-card-img"><img src="pics/ugc/227905024792633.png" data-rblx-id="227905024792633" data-rblx-type="bundle" alt="adidas Trionda Wave 2026 Boots"></div>
-              <div class="ugc-card-info"><p class="ugc-name">adidas Trionda Wave 2026 Boots</p></div>
-            </a>
-            <a href="https://www.roblox.com/catalog/122279292783991/adidas-Host-Fusion-Bucket-Hat" target="_blank" rel="noopener" class="ugc-card">
-              <div class="ugc-card-img"><img src="pics/ugc/122279292783991.png" data-rblx-id="122279292783991" alt="adidas Host Fusion Bucket Hat"></div>
-              <div class="ugc-card-info"><p class="ugc-name">adidas Host Fusion Bucket Hat</p></div>
-            </a>
-            <a href="https://www.roblox.com/catalog/125241081869206/adidas-Festival-Wristband-Stack" target="_blank" rel="noopener" class="ugc-card">
-              <div class="ugc-card-img"><img src="pics/ugc/125241081869206.png" data-rblx-id="125241081869206" alt="adidas Festival Wristband Stack"></div>
-              <div class="ugc-card-info"><p class="ugc-name">adidas Festival Wristband Stack</p></div>
-            </a>'''
-
+              cards = '\n            <a href="https://www.roblox.com/bundles/227905024792633/adidas-Trionda-Wave-2026-Boots" target="_blank" rel="noopener" class="ugc-card">\n              <div class="ugc-card-img"><img src="pics/ugc/227905024792633.png" data-rblx-id="227905024792633" data-rblx-type="bundle" alt="adidas Trionda Wave 2026 Boots"></div>\n              <div class="ugc-card-info"><p class="ugc-name">adidas Trionda Wave 2026 Boots</p></div>\n            </a>\n            <a href="https://www.roblox.com/catalog/122279292783991/adidas-Host-Fusion-Bucket-Hat" target="_blank" rel="noopener" class="ugc-card">\n              <div class="ugc-card-img"><img src="pics/ugc/122279292783991.png" data-rblx-id="122279292783991" alt="adidas Host Fusion Bucket Hat"></div>\n              <div class="ugc-card-info"><p class="ugc-name">adidas Host Fusion Bucket Hat</p></div>\n            </a>\n            <a href="https://www.roblox.com/catalog/125241081869206/adidas-Festival-Wristband-Stack" target="_blank" rel="noopener" class="ugc-card">\n              <div class="ugc-card-img"><img src="pics/ugc/125241081869206.png" data-rblx-id="125241081869206" alt="adidas Festival Wristband Stack"></div>\n              <div class="ugc-card-info"><p class="ugc-name">adidas Festival Wristband Stack</p></div>\n            </a>'
               start = s.find('<div class="brand-section brand-adidas" data-ugc-brand="adidas">')
-              if start == -1:
-                  raise SystemExit('Adidas section not found')
               grid_start = s.find('<div class="ugc-grid">', start)
-              if grid_start == -1:
-                  raise SystemExit('Adidas grid not found')
               grid_end = s.find('</div>\n          <button class="slider-btn slider-btn-next"', grid_start)
-              if grid_end == -1:
-                  raise SystemExit('Adidas grid end not found')
+              if start == -1 or grid_start == -1 or grid_end == -1:
+                  raise SystemExit('Adidas carousel not found')
               s = s[:grid_end] + cards + '\n          ' + s[grid_end:]
-
-          # Demonology: render the actual gallery file as a normal img element.
-          demon_start = s.find('<div class="assets-subpanel" id="assets-demonology">')
-          if demon_start != -1:
-              demon_end = s.find('</div>', demon_start)
-              demon_end = s.find('</div>', demon_end + 6) + 6
-              replacement = '''<div class="assets-subpanel" id="assets-demonology">
-          <img class="demonology-gallery" src="pics/demonology/client-work-gallery.webp?v=20260819-2" alt="Demonology 3D asset gallery">
-        </div>'''
-              s = s[:demon_start] + replacement + s[demon_end:]
 
           p.write_text(s, encoding='utf-8')
 
           css = Path('portfolio.css')
           c = css.read_text(encoding='utf-8')
-          if '/* Demonology img element override */' not in c:
-              c += '''\n\n/* Demonology img element override */\n#assets-demonology { background: none !important; min-height: 0 !important; width: 100% !important; }\n.demonology-gallery { display:block; width:min(100%, 900px); height:auto; margin:0 auto; border-radius:20px; }\n'''
+          marker = '/* Demonology img element final override */'
+          if marker not in c:
+              c += '\n\n' + marker + '\n#assets-demonology { background: none !important; min-height: 0 !important; width: 100% !important; }\n.demonology-gallery { display: block; width: min(100%, 900px); height: auto; margin: 0 auto; border-radius: 20px; }\n'
           css.write_text(c, encoding='utf-8')
 
       - name: Commit fixes
@@ -78,7 +64,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "No portfolio changes to commit."
           else
-            git commit -m "Add new Adidas UGC items and render Demonology gallery"
+            git commit -m "Fix 3D client tabs, Demonology gallery, and Adidas items"
             git pull --rebase origin main || true
             git push
           fi
