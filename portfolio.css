@@ -332,6 +332,13 @@ a.nav-logo {
 /* Demonology image-only carousel */
 #assets-demonology { background: none !important; min-height: 0 !important; width: 100% !important; }
 .demonology-carousel { width: 100%; }
+.demonology-carousel .ugc-grid {
+  display: grid;
+  grid-template-rows: repeat(3, auto);
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(120px, calc((100% - 7rem) / 8));
+  align-items: start;
+}
 .demonology-card { cursor: zoom-in; }
 .demonology-card .ugc-card-img { background: #000; }
 .demonology-card .ugc-card-img img { object-fit: contain; }
