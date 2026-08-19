@@ -350,7 +350,13 @@ a.nav-logo {
   grid-auto-columns: minmax(120px, calc((100% - 7rem) / 8));
   align-items: start;
 }
-.demonology-card { cursor: zoom-in; }
+.demonology-card {
+  cursor: zoom-in;
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+.demonology-card:hover { background: transparent; }
 .demonology-card .ugc-card-img { background: transparent; }
 .demonology-card .ugc-card-img img { object-fit: contain; }
 
