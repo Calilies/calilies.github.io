@@ -5,6 +5,7 @@ on:
   push:
     paths:
       - '.github/workflows/cache-roblox-thumbnails.yml'
+      - 'portfolio.html'
 
 permissions:
   contents: write
