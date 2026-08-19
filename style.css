@@ -456,11 +456,19 @@ a  { color: inherit; text-decoration: none; }
   font-weight: 500;
 }
 
+.skills-heading {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-heading);
+  margin-top: 1.15rem;
+}
+
 .skills-list {
   display: flex;
   flex-wrap: wrap;
   gap: 0.55rem;
-  margin-top: 1.4rem;
+  margin-top: 0.65rem;
 }
 
 .skill-tag {
