@@ -275,6 +275,14 @@ a.nav-logo {
   border-bottom: 2px solid var(--border);
 }
 
+.personal-ugc-sales {
+  margin: 0.55rem 0 0;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--accent-primary);
+}
+
 /* Sub-tabs */
 .assets-subtabs-wrap {
   margin-bottom: 1.8rem;
