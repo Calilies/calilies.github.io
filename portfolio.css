@@ -329,6 +329,9 @@ a.nav-logo {
 }
 
 
-/* Demonology img element final override */
+/* Demonology image-only carousel */
 #assets-demonology { background: none !important; min-height: 0 !important; width: 100% !important; }
-.demonology-gallery { display: block; width: min(100%, 900px); height: auto; margin: 0 auto; border-radius: 20px; }
+.demonology-carousel { width: 100%; }
+.demonology-card { cursor: default; }
+.demonology-card .ugc-card-img { background: var(--bg-card); }
+.demonology-card .ugc-card-img img { object-fit: contain; }
