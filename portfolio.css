@@ -318,9 +318,13 @@ a.nav-logo {
   content: "";
   display: block;
   width: min(100%, 904px);
+  min-height: 600px;
   aspect-ratio: 904 / 1814;
   margin: 0 auto;
-  background: url("/pics/demonology/client-work-gallery.webp?v=20260819-3") center top / contain no-repeat;
+  background-image: url("https://raw.githubusercontent.com/Calilies/calilies.github.io/51a12097016a72cf74b9633c84a835702c5b5afe/pics/demonology/client-work-gallery.webp");
+  background-position: center top;
+  background-size: contain;
+  background-repeat: no-repeat;
   border-radius: 20px;
 }
 
