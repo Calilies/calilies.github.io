@@ -351,7 +351,7 @@ a.nav-logo {
   align-items: start;
 }
 .demonology-card { cursor: zoom-in; }
-.demonology-card .ugc-card-img { background: #898989; }
+.demonology-card .ugc-card-img { background: transparent; }
 .demonology-card .ugc-card-img img { object-fit: contain; }
 
 body.lightbox-open { overflow: hidden; }
@@ -376,7 +376,7 @@ body.lightbox-open { overflow: hidden; }
   width: auto;
   height: auto;
   object-fit: contain;
-  background: #898989;
+  background: transparent;
   border-radius: 14px;
   box-shadow: 0 18px 60px rgba(0, 0, 0, 0.55);
   cursor: default;
