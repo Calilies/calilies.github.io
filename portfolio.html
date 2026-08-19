@@ -1391,14 +1391,26 @@
     }
 
     async function loadRobloxPrices() {
-      const missingIds = [...new Set(
+      let staticDetails = {};
+      try {
+        const response = await fetch('prices.json', { cache: 'no-store' });
+        if (response.ok) staticDetails = await response.json();
+      } catch (e) { /* cached metadata is optional */ }
+
+      const ids = [...new Set(
         [...document.querySelectorAll('.ugc-card [data-rblx-id]')]
-          .filter(img => !img.closest('.ugc-card')?.querySelector('.ugc-price') || img.closest('.brand-misc'))
           .filter(img => img.dataset.rblxType !== 'bundle')
+          .filter(img => !img.closest('.ugc-card')?.querySelector('.ugc-price') || img.closest('.brand-misc'))
           .map(img => img.dataset.rblxId)
       )];
 
-      for (const batch of chunk(missingIds, 5)) {
+      const remainingIds = [];
+      ids.forEach(id => {
+        if (staticDetails[id]) applyRobloxPrice(id, staticDetails[id]);
+        else remainingIds.push(id);
+      });
+
+      for (const batch of chunk(remainingIds, 5)) {
         await Promise.allSettled(batch.map(async id => {
           const details = await fetchRobloxAssetDetails(id);
           applyRobloxPrice(id, details);

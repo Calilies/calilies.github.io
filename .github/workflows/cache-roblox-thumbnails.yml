@@ -26,6 +26,7 @@ jobs:
           import time
           import urllib.parse
           import urllib.request
+          from concurrent.futures import ThreadPoolExecutor, as_completed
 
           html = pathlib.Path('portfolio.html').read_text(encoding='utf-8')
           asset_ids = sorted(set(re.findall(r'data-rblx-id="(\d+)"', html)))
@@ -91,6 +92,37 @@ jobs:
                       print(f'Failed bundle {item_id}: {e}')
               time.sleep(0.25)
 
+          def get_asset_details(item_id):
+              url = f'https://economy.roblox.com/v2/assets/{item_id}/details'
+              for attempt in range(3):
+                  try:
+                      data = get_json(url)
+                      return item_id, {
+                          'PriceInRobux': data.get('PriceInRobux'),
+                          'IsForSale': bool(data.get('IsForSale')),
+                          'IsPublicDomain': bool(data.get('IsPublicDomain')),
+                          'Sales': data.get('Sales') or 0,
+                      }
+                  except Exception as e:
+                      if attempt == 2:
+                          print(f'Failed metadata {item_id}: {e}')
+                      time.sleep(0.4 * (attempt + 1))
+              return item_id, None
+
+          prices = {}
+          with ThreadPoolExecutor(max_workers=10) as pool:
+              futures = [pool.submit(get_asset_details, item_id) for item_id in asset_ids]
+              for future in as_completed(futures):
+                  item_id, details = future.result()
+                  if details is not None:
+                      prices[item_id] = details
+
+          pathlib.Path('prices.json').write_text(
+              json.dumps(prices, indent=2, sort_keys=True) + '\n',
+              encoding='utf-8'
+          )
+          print(f'Cached {len(prices)} Roblox prices.')
+
           pathlib.Path('thumbnails.json').write_text(
               json.dumps(mapping, indent=2, sort_keys=True) + '\n',
               encoding='utf-8'
@@ -101,7 +133,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add pics/ugc thumbnails.json
+          git add pics/ugc thumbnails.json prices.json
           if git diff --cached --quiet; then
             echo "No thumbnail changes to commit."
           else
