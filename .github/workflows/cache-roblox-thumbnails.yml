@@ -109,15 +109,25 @@ jobs:
                       time.sleep(0.4 * (attempt + 1))
               return item_id, None
 
+          prices_path = pathlib.Path('prices.json')
           prices = {}
-          with ThreadPoolExecutor(max_workers=10) as pool:
-              futures = [pool.submit(get_asset_details, item_id) for item_id in asset_ids]
+          if prices_path.exists():
+              try:
+                  prices = json.loads(prices_path.read_text(encoding='utf-8'))
+              except Exception as e:
+                  print(f'Could not read existing prices cache: {e}')
+
+          missing_price_ids = [item_id for item_id in asset_ids if item_id not in prices]
+          print(f'Fetching {len(missing_price_ids)} missing Roblox price records.')
+
+          with ThreadPoolExecutor(max_workers=4) as pool:
+              futures = [pool.submit(get_asset_details, item_id) for item_id in missing_price_ids]
               for future in as_completed(futures):
                   item_id, details = future.result()
                   if details is not None:
                       prices[item_id] = details
 
-          pathlib.Path('prices.json').write_text(
+          prices_path.write_text(
               json.dumps(prices, indent=2, sort_keys=True) + '\n',
               encoding='utf-8'
           )
