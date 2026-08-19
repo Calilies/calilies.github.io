@@ -1025,6 +1025,7 @@
         document.querySelectorAll('#ugc-subtabs .assets-subtab').forEach(t => t.classList.remove('active'));
         btn.classList.add('active');
         const filter = btn.dataset.ugcFilter;
+        document.getElementById('tab-ugc').classList.toggle('ugc-brand-single', filter !== 'all');
         document.querySelectorAll('[data-ugc-brand]').forEach(section => {
           section.style.display = (filter === 'all' || section.dataset.ugcBrand === filter) ? '' : 'none';
         });

@@ -295,6 +295,15 @@ a.nav-logo {
   scroll-snap-align: none;
 }
 
+/* Three-row carousels when an individual UGC brand is selected */
+.ugc-brand-single [data-ugc-brand] .ugc-grid {
+  display: grid;
+  grid-template-rows: repeat(3, auto);
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(120px, calc((100% - 7rem) / 8));
+  align-items: start;
+}
+
 /* ── Client-work cleanup + Demonology gallery ─────────────── */
 .assets-subtab[data-subtab="assets-adidas"],
 .assets-subtab[data-subtab="assets-medal"] {
